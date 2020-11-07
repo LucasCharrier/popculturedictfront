@@ -1,5 +1,5 @@
 <template>
-    <div :style="{marginLeft: 'auto', marginRight: 'auto', width: '300px'}">
+    <div :style="{marginLeft: 'auto', marginRight: 'auto', width: '600px'}">
         <template>
             <div v-for="definition in definitions" :key="definition.id">
                 <Definition :definition="definition"/>
