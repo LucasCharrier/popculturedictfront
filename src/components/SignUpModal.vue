@@ -1,5 +1,5 @@
 <template>
-    <a-modal
+    <!-- <a-modal
         title="Title"
         :visible="visible"
         @ok="handleOk"
@@ -31,19 +31,12 @@
                 </button>
             </div>
         </form>
-    </a-modal>
+    </a-modal> -->
 </template>
 <script>
     import { mapActions } from 'vuex'
-    import { 
-        Modal,
-    } from 'ant-design-vue'
-
     export default {
         name: 'dasboard',
-        components: {
-            'a-modal': Modal,
-        },
         props: {
             visible: Boolean
         },

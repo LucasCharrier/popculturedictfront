@@ -4,7 +4,7 @@
             <Definition :definition="definition"/>
         </div>
         <div v-if="isLoadingMore" :style="{ width: '300px', margin: '10px', textAlign: 'center' }">
-            <a-spin size="large" />
+            <p>Loading</p>
         </div>
         <div v-if="!hasMore" :style="{ width: '300px', margin: '10px', textAlign: 'center' }">
             <p>Plus de résultat</p>
@@ -14,7 +14,6 @@
 <script>
 import { mapActions } from 'vuex'
 import axios from 'axios'
-import { Spin } from 'ant-design-vue'
 
 import Definition from '@/components/Definition'
 
@@ -22,7 +21,6 @@ export default {
     name: 'dasboard',
     components: {
         Definition,
-        'a-spin': Spin
     },
     created () {
         // fetch the data when the view is created and the data is

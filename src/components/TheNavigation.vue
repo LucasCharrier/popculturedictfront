@@ -1,56 +1,81 @@
 <template>
     <div>
-        <a-menu mode="horizontal">
-            <a-menu-item key="home"> 
-                <router-link :to="{
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <router-link class="navbar-item" :to="{
                     name: 'dashboard'
                 }">
-                    Le Dictionnaire Urbain
+                    <img src="@/assets/images/logo.png" height="28">
                 </router-link>
-            </a-menu-item>
-            <a-menu-item>
-                <a-input-search placeholder="Chercher une définition" style="width: 200px" @search="onSearch" v-model="searchedValue" />
-            </a-menu-item>
-            <a-menu-item key="tag"> 
-                <router-link :to="{
-                    name: 'tags'
-                }">
-                    Tags
-                </router-link>
-            </a-menu-item>
-            <template v-if="authenticated">
-                <a-menu-item key="addDef" @click="showModal"><a-icon type="appstore" />Ajouter une définition</a-menu-item>
-                <a-menu-item key="username">
-                    <router-link :to="{
-                        name: 'profile',
-                        params: {
-                            id: user.id
-                        }
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <router-link class="navbar-item" :to="{
+                        name: 'tags'
                     }">
-                        <a-icon type="appstore" />
-                        {{ user.name }}
-                    </router-link>        
-                </a-menu-item>
-                
-                <a-menu-item key="signout"> 
-                    <a href="#" @click.prevent="signOut">
-                        Sign Out
-                    </a>
-                </a-menu-item>
-            </template>
-            <template v-else>
-                <a-menu-item key="signin" :style="{ float: 'right' }"> 
-                    <router-link :to="{
-                        name: 'signin'
-                    }">
-                        signin
+                        Tags
                     </router-link>
-                </a-menu-item>
-                <a-menu-item key="signup" :style="{ float: 'right' }" @click="showSignUpModal"> 
-                    signup
-                </a-menu-item>
-            </template>
-        </a-menu>
+                    <template v-if="authenticated">
+                        <a class="navbar-item" key="addDef" @click.prevent="showModal">Ajouter une définition</a>
+                        <router-link class="navbar-item"  :to="{
+                            name: 'profile',
+                            params: {
+                                id: user.id
+                            }
+                        }">
+                            {{ user.name }}
+                        </router-link>
+                    </template>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                        More
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item">
+                                About
+                            </a>
+                            <a class="navbar-item">
+                                Jobs
+                            </a>
+                            <a class="navbar-item">
+                                Contact
+                            </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item">
+                                Report an issue
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <template v-if="authenticated">
+                            <a class="button is-light" key="signout" @click.prevent="signOut">
+                                Sign Out
+                            </a>
+                        </template>
+                        <template v-else>
+                            <router-link class="button is-primary" :to="{
+                                name: 'signin'
+                            }">
+                                signin
+                            </router-link>
+                            <a class="button is-light" @click.prevent="showSignUpModal">
+                                Log in
+                            </a>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </nav>
         <CreateDefModal
             :visible="visible"
             @onHandleOk="handleOk"
@@ -63,7 +88,6 @@
 </template>
 <script>
     import { mapGetters, mapActions } from 'vuex'
-    import { Menu, Input, Icon }  from 'ant-design-vue'
     import CreateDefModal from '@/components/CreateDefModal.vue'
     import SignUpModal from '@/components/SignUpModal.vue'
     export default {
@@ -76,15 +100,12 @@
         data() {
             return {
                 visible: false,
-                visibleSignUpModal: false,
-                searchedValue: ''
+                visibleSignUpModal: false
             }
         },
         components: {
-            'a-menu': Menu,
-            'a-menu-item': Menu.Item,
-            'a-icon': Icon,
-            'a-input-search': Input.Search,
+            // 'a-menu': Menu,
+            // 'a-menu-item': Menu.Item,
             'CreateDefModal': CreateDefModal,
             SignUpModal
             // 'a-sub-menu': Sub.menu
@@ -111,17 +132,6 @@
             },
             handleCancelSignUpModal() {
                 this.visibleSignUpModal = false;
-            },
-            onSearch() {
-                if (this.searchedValue) {
-                    console.log('LCS TEST TOTO', this.searchedValue)
-                    this.$router.push({
-                        // name: 'dashboard',
-                        query: { q: this.searchedValue }
-                    }).catch((e) => {
-                        console.log('failed', e)
-                    })
-                }
             },
             signOut() {
                 this.signOutAction().then(() => {

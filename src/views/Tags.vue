@@ -7,7 +7,6 @@
                         <p>{{tag.name}}</p>
                     </div>
                 </template>
-                <!-- </a-row> -->
             </div>
         </template>
     </div>
@@ -17,9 +16,6 @@ import { mapActions } from 'vuex'
 
 export default {
     name: 'tags',
-    components: {
-        //'a-row': Row
-    },
     created () {
         // fetch the data when the view is created and the data is
         // already being observed

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+import PortalVue from 'portal-vue'
 
 import router from './router'
 import store from './store'
@@ -10,6 +11,7 @@ require('@/store/subscriber')
 
 axios.defaults.baseURL = API_BASE_URL
 Vue.config.productionTip = false
+Vue.use(PortalVue)
 
 store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
   new Vue({

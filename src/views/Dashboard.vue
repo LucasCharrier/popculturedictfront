@@ -1,12 +1,20 @@
 <template>
     <div :style="{marginLeft: 'auto', marginRight: 'auto', maxWidth: '600px'}">
+        <div class="field">
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    v-on:keyup="onSearch" placeholder="Chercher une définition" v-model="searchedValue">
+            </div>
+        </div>
         <template>
             <div v-for="definition in definitions" :key="definition.id">
                 <Definition :definition="definition"/>
             </div>
         </template>
         <div v-if="isLoadingMore" :style="{ maxWidth: '600px', margin: '10px', textAlign: 'center' }">
-            <a-spin size="large" />
+            <p>Loading</p>
         </div>
         <div v-if="!hasMore" :style="{ maxWidth: '600px', margin: '10px', textAlign: 'center' }">
             <p>Plus de résultat</p>
@@ -17,17 +25,12 @@
 import { mapActions } from 'vuex'
 import axios from 'axios'
 
-import {
-    Spin
-} from 'ant-design-vue'
-
 import Definition from '@/components/Definition'
 
 export default {
     name: 'dasboard',
     components: {
         Definition,
-        'a-spin': Spin
         // 'a-col': Col,
         //'a-row': Row
     },
@@ -40,6 +43,7 @@ export default {
     data() {
         return {
             definitions: [],
+            searchedValue: '',
             isLoadingMore: false,
             hasMore: true
         }
@@ -48,13 +52,13 @@ export default {
         console.log('LCS ON MOUNT')
         this.scroll();
     },
-    watch: {
-        '$route' (to, from) {
-         if(from.query.q && to.query.q){ 
-            this.$router.go()
-           }    
-       }
-    },
+    // watch: {
+    //     '$route' (to, from) {
+    //      if(from.query.q && to.query.q){ 
+    //         this.$router.go()
+    //        }    
+    //    }
+    // },
     methods: { 
         ...mapActions({
             getDefinitionCollections: 'definition/getcollection'
@@ -89,6 +93,21 @@ export default {
                     })
                 }
             };
+        },
+        onSearch(e) {
+            if (e.keyCode === 13 && this.searchedValue) {
+                console.log('LCS TEST TOTO', this.searchedValue)
+                this.isLoadingMore = true
+                this.hasMore = true
+                this.definitions = []
+                this.getDefinitions(this.searchedValue)
+                this.$router.push({
+                    // name: 'dashboard',
+                    query: { q: this.searchedValue }
+                }).catch((e) => {
+                    console.log('failed', e)
+                })
+            }
         },
         async getDefinitions(q) {
             console.log('LCS DASHBOARD VUE', q)
