@@ -1,14 +1,14 @@
 <template>
-    <div :style="{marginLeft: 'auto', marginRight: 'auto', width: '600px'}">
+    <div :style="{marginLeft: 'auto', marginRight: 'auto', maxWidth: '600px'}">
         <template>
             <div v-for="definition in definitions" :key="definition.id">
                 <Definition :definition="definition"/>
             </div>
         </template>
-        <div v-if="isLoadingMore" :style="{ width: '300px', margin: '10px', textAlign: 'center' }">
+        <div v-if="isLoadingMore" :style="{ maxWidth: '600px', margin: '10px', textAlign: 'center' }">
             <a-spin size="large" />
         </div>
-        <div v-if="!hasMore" :style="{ width: '300px', margin: '10px', textAlign: 'center' }">
+        <div v-if="!hasMore" :style="{ maxWidth: '600px', margin: '10px', textAlign: 'center' }">
             <p>Plus de résultat</p>
         </div>
     </div>

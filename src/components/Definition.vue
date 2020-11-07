@@ -1,6 +1,6 @@
 
 <template>
-    <div class="card" :style="{ marginBottom: '10px', marginTop: '10px' }">
+    <div class="card" :style="{ marginBottom: '20px', marginTop: '20px' }">
         <div class="card-content">
             <p class="title">
                 {{ definition.word.name }}
