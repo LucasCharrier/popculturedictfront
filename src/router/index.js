@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard'
-import Signin from '../views/Signin'
 import Profile from '../views/Profile'
 import Definition from '../views/Definition'
 import Definitions from '../views/Definitions'
@@ -12,21 +11,6 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 
 const routes = [
-    // {
-    //     path: '/',
-    //     name: 'home',
-    //     component: Home
-    // },
-    {
-        path: '/signin',
-        name: 'signin',
-        component: Signin
-    },
-    // {
-    //     path: '/profile',
-    //     name: 'profile',
-    //     component: Profile
-    // },
     {
         path: '/profile/:id',
         name: 'profile',

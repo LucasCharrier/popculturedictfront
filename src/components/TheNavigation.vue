@@ -22,39 +22,20 @@
                     </router-link>
                     <template v-if="authenticated">
                         <a class="navbar-item" key="addDef" @click.prevent="showModal">Ajouter une définition</a>
-                        <router-link class="navbar-item"  :to="{
-                            name: 'profile',
-                            params: {
-                                id: user.id
-                            }
-                        }">
-                            {{ user.name }}
-                        </router-link>
                     </template>
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">
-                        More
-                        </a>
-
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item">
-                                About
-                            </a>
-                            <a class="navbar-item">
-                                Jobs
-                            </a>
-                            <a class="navbar-item">
-                                Contact
-                            </a>
-                            <hr class="navbar-divider">
-                            <a class="navbar-item">
-                                Report an issue
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="navbar-end">
+                <div class="navbar-item" v-if="authenticated">
+                    <router-link class="navbar-item"  :to="{
+                        name: 'profile',
+                        params: {
+                            id: user.id
+                        }
+                    }">
+                        {{ user.name }}
+                    </router-link>
+                </div>
                 <div class="navbar-item">
                     <div class="buttons">
                         <template v-if="authenticated">
@@ -63,12 +44,10 @@
                             </a>
                         </template>
                         <template v-else>
-                            <router-link class="button is-primary" :to="{
-                                name: 'signin'
-                            }">
-                                signin
-                            </router-link>
-                            <a class="button is-light" @click.prevent="showSignUpModal">
+                            <a class="button is-light"  @click.prevent="showSignUpModal">
+                                Sign Up
+                            </a>
+                            <a class="button is-light" @click.prevent="showSignInModal">
                                 Log in
                             </a>
                         </template>
@@ -84,12 +63,17 @@
             :visible="visibleSignUpModal"
             @onHandleOk="handleOkSignUpModal"
             @onHandleCancel="handleCancelSignUpModal"/>
+        <SignInModal
+            :visible="visibleSignInModal"
+            @onHandleOk="handleOkSignInModal"
+            @onHandleCancel="handleCancelSignInModal"/>
     </div>
 </template>
 <script>
     import { mapGetters, mapActions } from 'vuex'
     import CreateDefModal from '@/components/CreateDefModal.vue'
     import SignUpModal from '@/components/SignUpModal.vue'
+    import SignInModal from '@/components/SignInModal.vue'
     export default {
         computed: {
             ...mapGetters({
@@ -100,15 +84,14 @@
         data() {
             return {
                 visible: false,
-                visibleSignUpModal: false
+                visibleSignUpModal: false,
+                visibleSignInModal: false
             }
         },
         components: {
-            // 'a-menu': Menu,
-            // 'a-menu-item': Menu.Item,
-            'CreateDefModal': CreateDefModal,
-            SignUpModal
-            // 'a-sub-menu': Sub.menu
+            CreateDefModal,
+            SignUpModal,
+            SignInModal
         },
         methods: {
             ...mapActions({
@@ -119,6 +102,9 @@
             },
             showSignUpModal() {
                 this.visibleSignUpModal = true;
+            },
+            showSignInModal() {
+                this.visibleSignInModal = true;
             },
             handleOk() {
                 this.visible = false;
@@ -132,6 +118,12 @@
             },
             handleCancelSignUpModal() {
                 this.visibleSignUpModal = false;
+            },
+            handleOkSignInModal() {
+                this.visibleSignInModal = false;
+            },
+            handleCancelSignInModal() {
+                this.visibleSignInModal = false;
             },
             signOut() {
                 this.signOutAction().then(() => {

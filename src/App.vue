@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <TheNavigation />
-    <router-view/>
+    <router-view :style="{marginTop: '20px'}"/>
     <portal-target name="modals"></portal-target>
   </div>
 </template>

@@ -21,13 +21,12 @@
                     }">#{{ tag.text }}</router-link>
                 </span>
                 <br>
-                by <router-link :to="{
+                par <router-link :to="{
                         name: 'profile',
                         params: {
                             id: definition.user.id
                         }
-                    }">#{{ definition.user.name }}</router-link>
-                    <time datetime="2016-1-1">{{ definition.createdAt }}</time>
+                    }">#{{ definition.user.name }}</router-link> le <time datetime="2016-1-1">{{ definition.created_at }}</time>
             </div>
         </div>
         <footer class="card-footer">
