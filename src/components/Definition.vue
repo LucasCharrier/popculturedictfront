@@ -5,10 +5,13 @@
             <p class="title">
                 {{ definition.word.name }}
             </p>
-            <p class="subtitle">
-                {{ definition.text }}
-            </p>
             <div class="content">
+                <p class="subtitle">
+                    {{ definition.text }}
+                </p>
+                <p class="subtitle" :style="{ fontStyle: 'italic' }">
+                    {{ definition.exemple }}
+                </p>
                 <span v-for="tag in definition.tags" :key="tag.id" :style="{marginRight: '10px'}">
                     <router-link :to="{
                         name: 'tag',
