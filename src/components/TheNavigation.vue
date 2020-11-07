@@ -132,3 +132,8 @@
         }
     }
 </script>
+<style>
+    .navbar {
+        background-color: mediumaquamarine;
+    }
+</style>

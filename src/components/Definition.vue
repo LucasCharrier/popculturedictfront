@@ -6,10 +6,10 @@
                 {{ definition.word.name }}
             </p>
             <div class="content">
-                <p class="subtitle">
+                <p class="subtitle definition">
                     {{ definition.text }}
                 </p>
-                <p class="subtitle" :style="{ fontStyle: 'italic' }">
+                <p class="subtitle exemple" :style="{ fontStyle: 'italic' }">
                     {{ definition.exemple }}
                 </p>
                 <span v-for="tag in definition.tags" :key="tag.id" :style="{marginRight: '10px'}">
@@ -48,3 +48,22 @@
         props: ['definition']
     }
 </script>
+<style>
+    .title{
+        font-family: 'Copse', serif;
+    }
+    .subtitle.definition {
+        font-family: 'Quicksand', sans-serif;
+    }
+    .subtitle.exemple {
+        font-family: 'Quicksand', sans-serif;
+    }
+    .card {
+        border-radius: 10px;
+    }
+/* font-family: 'Bree Serif', serif;
+font-family: 'Copse', serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Quicksand', sans-serif; */
+</style>
