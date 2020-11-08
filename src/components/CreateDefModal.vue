@@ -1,5 +1,5 @@
 <template>
-    <portal to="modals">
+    <portal to="createDefModal">
         <div v-show="visible" class="modal is-active" @click="handleCancel">
             <div class="modal-background"></div>
             <div @click.stop class="modal-content">
@@ -29,11 +29,6 @@
                             </label>
                             <textarea class="textarea" type="text" name="exemple" id="exemple" v-model="form.tags"/>
                         </div>
-                        <!-- <a-select mode="tags" style="width: 100%" :token-separators="[',']" @search="handleSearch" @change="handleChange">
-                            <a-select-option v-for="tag in tags" :key="tag.id">
-                                {{ tag.name }}
-                            </a-select-option>
-                        </a-select> -->
                         <div class="field is-grouped">
                             <div class="control">
                                 <button class="button is-link" type="submit" >Submit</button>
@@ -58,10 +53,9 @@
                 form: {
                     name: '',
                     text: '',
-                    tags: [],
+                    tags: '',
                     exemple: ''
                 },
-                tags: ''
             }
         },
         methods: { 
@@ -76,7 +70,7 @@
                 this.$emit('onHandleOk')
                 this.createDefinition({
                     ...this.form,
-                    tags: this.tags.split(',').map(t => t.trim())
+                    tags: this.form.tags.split(',').map(t => t.trim()).filter(t => t)
                 })
             },
             handleChange(e) {

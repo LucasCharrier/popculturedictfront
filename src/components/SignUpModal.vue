@@ -1,5 +1,5 @@
 <template>
-    <portal to="modals">
+    <portal to="signUpModal">
         <div v-show="visible" class="modal is-active" @click="handleCancel">
             <div class="modal-background"></div>
             <div @click.stop class="modal-content">

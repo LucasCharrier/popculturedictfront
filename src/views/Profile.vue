@@ -4,7 +4,7 @@
             <Definition :definition="definition"/>
         </div>
         <div v-if="isLoadingMore" :style="{ width: '300px', margin: '10px', textAlign: 'center' }">
-            <p>Loading</p>
+            <p>Loading...</p>
         </div>
         <div v-if="!hasMore" :style="{ width: '300px', margin: '10px', textAlign: 'center' }">
             <p>Plus de résultat</p>
