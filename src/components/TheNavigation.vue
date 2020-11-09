@@ -7,50 +7,63 @@
                 }">
                     <img src="@/assets/images/logo.png" height="28">
                 </router-link>
+                <template v-if="authenticated">
+                    <a role="button" class="navbar-burger burger navbar-central-button" aria-label="menu" @click.prevent="showModal">
+                        Ajouter une définition
+                    </a>
+                </template>
+                <template v-else>
+                    <a class="button is-light navbar-burger burger navbar-central-button"  @click.prevent="showSignUpModal">
+                        Sign Up
+                    </a>
+                    <a class="button is-light navbar-burger burger navbar-central-button" @click.prevent="showSignInModal">
+                        Log in
+                    </a>
+                </template>
                 <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
                 </a>
             </div>
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-                    <router-link class="navbar-item" :to="{
+                    <!-- <router-link class="navbar-item" :to="{
                         name: 'tags'
                     }">
                         Tags
-                    </router-link>
+                    </router-link> -->
                     <template v-if="authenticated">
                         <a class="navbar-item" key="addDef" @click.prevent="showModal">Ajouter une définition</a>
                     </template>
                 </div>
-            </div>
-            <div class="navbar-end">
-                <div class="navbar-item" v-if="authenticated">
-                    <router-link class="navbar-item"  :to="{
-                        name: 'profile',
-                        params: {
-                            id: user.id
-                        }
-                    }">
-                        {{ user.name }}
-                    </router-link>
-                </div>
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <template v-if="authenticated">
-                            <a class="button is-light" key="signout" @click.prevent="signOut">
-                                Sign Out
-                            </a>
-                        </template>
-                        <template v-else>
-                            <a class="button is-light"  @click.prevent="showSignUpModal">
-                                Sign Up
-                            </a>
-                            <a class="button is-light" @click.prevent="showSignInModal">
-                                Log in
-                            </a>
-                        </template>
+                <div class="navbar-end">
+                    <div class="navbar-item" v-if="authenticated">
+                        <router-link class="navbar-item"  :to="{
+                            name: 'profile',
+                            params: {
+                                id: user.id
+                            }
+                        }">
+                            {{ user.name }}
+                        </router-link>
+                    </div>
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <template v-if="authenticated">
+                                <a class="button is-light" key="signout" @click.prevent="signOut">
+                                    Sign Out
+                                </a>
+                            </template>
+                            <template v-else>
+                                <a class="button is-light"  @click.prevent="showSignUpModal">
+                                    Sign Up
+                                </a>
+                                <a class="button is-light" @click.prevent="showSignInModal">
+                                    Log in
+                                </a>
+                            </template>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -135,5 +148,13 @@
 <style>
     .navbar {
         background-color: mediumaquamarine;
+    }
+    .navbar-burger.navbar-central-button {
+        width: auto;
+        line-height: 3.25rem;
+        color: #363636;
+    }
+    .navbar-burger {
+       color: #363636;
     }
 </style>
