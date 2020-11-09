@@ -44,7 +44,7 @@ export default {
         return {
             definitions: [],
             searchedValue: '',
-            isLoadingMore: false,
+            isLoadingMore: true,
             hasMore: true
         }
     },
@@ -114,6 +114,7 @@ export default {
             let response = await this.getDefinitionCollections({ q })
             this.definitions = response.data.data
             this.next = response.data.links.next
+            this.isLoadingMore = false
             if (!this.next) {
                 this.hasMore = false
             }
