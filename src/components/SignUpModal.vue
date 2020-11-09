@@ -23,9 +23,9 @@
                             </label>
                             <input class="input"  type="password" name="password" id="password" v-model="form.password">
                         </div>
-                        <div class="field is-grouped">
+                        <div class="field is-grouped is-grouped-right">
                             <div class="control">
-                                <button class="button is-link" type="submit" >Sign In</button>
+                                <button class="button is-primary" type="submit" >Sign In</button>
                             </div>
                         </div>
                     </form>

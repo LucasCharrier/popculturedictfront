@@ -29,9 +29,9 @@
                             </label>
                             <textarea class="textarea" type="text" name="exemple" id="exemple" v-model="form.tags"/>
                         </div>
-                        <div class="field is-grouped">
+                        <div class="field is-grouped is-grouped-right">
                             <div class="control">
-                                <button class="button is-link" type="submit" >Submit</button>
+                                <button class="button is-primary" type="submit" >Ajouter</button>
                             </div>
                         </div>
                     </form>
