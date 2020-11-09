@@ -1,6 +1,6 @@
 
 <template>
-    <div class="card" :style="{ marginBottom: '20px', marginTop: '20px' }">
+    <div class="card" :style="{ marginBottom: '20px', marginTop: '20px' }" ref="printMe">
         <div class="card-content">
             <p class="title">
                 <router-link :to="{
@@ -38,7 +38,7 @@
         <footer class="card-footer">
             <p class="card-footer-item">
             <span>
-                View on <a href="">Twitter</a>
+                View on <a href="" @click.prevent="print">Twitter</a>
             </span>
             </p>
             <p class="card-footer-item">
@@ -47,11 +47,46 @@
             </span>
             </p>
         </footer>
+        <ShareModal v-if="visible"
+            :visible="visible"
+            @onHandleOk="onHandleOk"
+            @onHandleCancel="onHandleCancel"
+            :definition="definition" />
     </div>
 </template> 
 <script>
+    import ShareModal from '@/components/ShareModal'
     export default {
-        props: ['definition']
+        props: ['definition'],
+        data() {
+            return {
+                visible: false
+            }
+        },
+        components: {
+            ShareModal
+        },
+        methods: {
+            async print() {
+                // const el = this.$refs.printMe;
+                // add option type to get the image version
+                // if not provided the promise will return 
+                // the canvas.
+                console.log('LCS DEFINITION PRINT')
+                this.visible = true
+                // const options = {
+                //     type: 'dataURL'
+                // }
+                // this.output = await this.$html2canvas(el, options);
+                // console.log(this.output)
+            },
+            onHandleOk() {
+
+            },
+            onHandleCancel() {
+
+            }
+        }
     }
 </script>
 <style>
