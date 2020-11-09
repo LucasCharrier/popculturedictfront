@@ -26,7 +26,7 @@
                         params: {
                             id: definition.user.id
                         }
-                    }">#{{ definition.user.name }}</router-link> le <time datetime="2016-1-1">{{ definition.created_at }}</time>
+                    }">#{{ definition.user.name }}</router-link>
             </div>
         </div>
         <footer class="card-footer">
