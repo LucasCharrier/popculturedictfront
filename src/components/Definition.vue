@@ -26,7 +26,7 @@
                         params: {
                             id: definition.user.id
                         }
-                    }">#{{ definition.user.name }}</router-link>
+                    }">{{ definition.user.name }}</router-link>
             </div>
         </div>
         <footer class="card-footer">
