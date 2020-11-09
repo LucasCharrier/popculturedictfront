@@ -21,7 +21,8 @@
                     <router-link :to="{
                         name: 'tag',
                         params: {
-                            id: tag.id
+                            id: tag.id,
+                            text: tag.text
                         }
                     }">#{{ tag.text }}</router-link>
                 </span>

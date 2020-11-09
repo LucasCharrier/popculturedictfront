@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard'
 import Profile from '../views/Profile'
-import Definition from '../views/Definition'
-import Definitions from '../views/Definitions'
+import DefinitionDetail from '../views/DefinitionDetail'
+import TagDefinitions from '../views/TagDefinitions'
 import Tags from '../views/Tags'
 // import store from '../store'
 
@@ -19,7 +19,7 @@ const routes = [
     {
         path: '/definition/:id',
         name: 'definition',
-        component: Definition
+        component: DefinitionDetail
     },
     {
         path: '/tags',
@@ -27,9 +27,9 @@ const routes = [
         component: Tags
     },
     {
-        path: '/tag/:id',
+        path: '/tag/:text-:id',
         name: 'tag',
-        component: Definitions
+        component: TagDefinitions
     },
     {
         path: '/',

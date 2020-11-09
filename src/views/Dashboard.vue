@@ -53,9 +53,7 @@ export default {
     watch: {
         '$route' (to, from) {
             if(from.query.q !== to.query.q){ 
-                // this.$route.name 
                 this.getDefinitions(to.query.q)
-                //this.$router.go()
             }    
         }
     },
