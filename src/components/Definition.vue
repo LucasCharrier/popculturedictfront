@@ -34,8 +34,31 @@
                         }
                     }">{{ definition.user.name }}</router-link>
             </div>
+            <div class="field has-addons">
+                <p class="control">
+                    <a
+                        @click.prevent="likeAction"
+                        :class="{button: true, up: true, active: definition.user_reaction === 'like'}">
+                        <span class="icon is-small">
+                            <i class="fas fa-thumbs-up"></i>
+                        </span>
+                        <span>{{definition.like || Math.floor(Math.random() * Math.floor(100))}}</span>
+                    </a>
+                </p>
+                <p class="control">
+                    <a
+                        @click.prevent="dislikeAction"
+                        :class="{button: true, down: true, active: definition.user_reaction === 'dislike'}">
+                        <span class="icon is-small">
+                            <i class="fas fa-thumbs-down"></i>
+                        </span>
+                        <span>{{definition.dislike || Math.floor(Math.random() * Math.floor(100))}}</span>
+                    </a>
+                </p>
+            </div>
         </div>
-        <footer class="card-footer">
+        <!-- <footer class="card-footer">
+
             <p class="card-footer-item">
             <span>
                 View on <a href="" @click.prevent="print">Twitter</a>
@@ -46,7 +69,7 @@
                 Share on <a href="#">Facebook</a>
             </span>
             </p>
-        </footer>
+        </footer> -->
         <ShareModal v-if="visible"
             :visible="visible"
             @onHandleOk="onHandleOk"
@@ -55,7 +78,10 @@
     </div>
 </template> 
 <script>
+    import { mapActions } from 'vuex'
+
     import ShareModal from '@/components/ShareModal'
+
     export default {
         props: ['definition'],
         data() {
@@ -67,6 +93,10 @@
             ShareModal
         },
         methods: {
+            ...mapActions({
+                like: 'user/like',
+                dislike: 'user/dislike',
+            }),
             async print() {
                 // const el = this.$refs.printMe;
                 // add option type to get the image version
@@ -79,6 +109,14 @@
                 // }
                 // this.output = await this.$html2canvas(el, options);
                 // console.log(this.output)
+            },
+            likeAction() {
+                console.log('LCS TEST LIKE')
+                this.like({ id: this.definition.id })
+            },
+            dislikeAction() {
+                console.log('LCS TEST DISLIKE')
+                this.dislike({ id: this.definition.id })
             },
             onHandleOk() {
 
@@ -106,6 +144,18 @@
     }
     .title a {
         color: #363636;
+    }
+    .button.up, .button.down {
+        box-shadow: 0 2px 0 black;
+        border: 1px #000 solid;
+    }
+    .button.up.active, .button.down.active {
+        box-shadow: 0 0 0 black;
+        position: relative;
+        top: 2px;
+        background-color: mediumaquamarine;
+        /* background-color: #05ff56; */
+        /* background-color: #EFFF00; */
     }
     /* font-family: 'Bree Serif', serif;
     font-family: 'Copse', serif;
