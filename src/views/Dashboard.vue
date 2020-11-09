@@ -17,7 +17,7 @@
             <p>Loading...</p>
         </div>
         <div v-if="!hasMore" :style="{ maxWidth: '600px', margin: '10px', textAlign: 'center' }">
-            <p>Plus de résultat</p>
+            <p>Fin des résultats</p>
         </div>
     </div>
 </template>
