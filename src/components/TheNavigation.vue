@@ -13,10 +13,10 @@
                     </a>
                 </template>
                 <template v-else>
-                    <a class="button is-light navbar-burger burger navbar-central-button"  @click.prevent="showSignUpModal">
+                    <a class="button is-light navbar-burger burger"  @click.prevent="showSignUpModal">
                         Sign Up
                     </a>
-                    <a class="button is-light navbar-burger burger navbar-central-button" @click.prevent="showSignInModal">
+                    <a class="button is-light navbar-burger burger" @click.prevent="showSignInModal">
                         Log in
                     </a>
                 </template>
@@ -153,6 +153,13 @@
         width: auto;
         line-height: 3.25rem;
         color: #363636;
+    }
+    .navbar-burger.button {
+        margin-right: .5rem;
+        margin-bottom: .5rem;
+        margin-top: .5rem;
+        height: 2.25rem;
+        width: auto;
     }
     .navbar-burger {
        color: #363636;
