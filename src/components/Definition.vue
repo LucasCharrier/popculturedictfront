@@ -59,9 +59,11 @@
     }
     .subtitle.definition {
         font-family: 'Quicksand', sans-serif;
+        white-space: pre-wrap;
     }
     .subtitle.exemple {
         font-family: 'Quicksand', sans-serif;
+        white-space: pre-wrap;
     }
     .card {
         border-radius: 10px;
