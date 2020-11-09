@@ -45,9 +45,6 @@ const routes = [
         //     next()
         // }
     },
-    // { path: '/implicit/callback', component: Auth.handleCallback() },
-    // { path: '/trivia', component: TriviaGame },
-  //  { path: '/', component: Dashboard},
   ]
   
   const router = new VueRouter({

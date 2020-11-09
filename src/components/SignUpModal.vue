@@ -7,7 +7,7 @@
                     <form @submit.prevent="submit">
                         <div class="field">
                             <label for="name" class="label">
-                                Name
+                                Username
                             </label>
                             <input class="input"  type="text" name="name" id="name" v-model="form.name">
                         </div>
@@ -19,7 +19,7 @@
                         </div>
                         <div class="field">
                             <label for="password" class="label">
-                                Password
+                                PMot de passe
                             </label>
                             <input class="input"  type="password" name="password" id="password" v-model="form.password">
                         </div>

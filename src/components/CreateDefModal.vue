@@ -7,25 +7,25 @@
                     <form @submit.prevent="submit">
                         <div class="field">
                             <label class="label" for="name">
-                                word
+                                Mot
                             </label>
                             <input class="input" type="text" name="name" id="name" v-model="form.name">
                         </div>
                         <div class="field">
                             <label class="label" for="text">
-                                definition
+                                Definition
                             </label>
                             <textarea class="textarea" type="text" name="text" id="text" v-model="form.text"/>
                         </div>
                         <div class="field">
                             <label class="label" for="text">
-                                exemple
+                                Exemple
                             </label>
                             <textarea class="textarea" type="text" name="exemple" id="exemple" v-model="form.exemple"/>
                         </div>
                             <div class="field">
                             <label class="label" for="text">
-                                hashtags
+                                Hashtags
                             </label>
                             <textarea class="textarea" type="text" name="exemple" id="exemple" v-model="form.tags"/>
                         </div>

@@ -13,7 +13,7 @@
                         </div>
                         <div class="field">
                             <label for="password" class="label">
-                                Password
+                                Mot de passe
                             </label>
                             <input class="input"  type="password" name="password" id="password" v-model="form.password">
                         </div>
@@ -60,6 +60,7 @@ export default {
         },
         submit() {
             this.signIn(this.form).then(() => {
+                this.$emit('onHandleOk')
                 this.$router.replace({
                     name: 'dashboard'
                 }).catch(() => {
