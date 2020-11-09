@@ -37,7 +37,6 @@ export default {
     created () {
         // fetch the data when the view is created and the data is
         // already being observed
-        this.$route.query.q
         this.getDefinitions(this.$route.query.q)
     },
     data() {
@@ -51,13 +50,15 @@ export default {
     mounted() {
         this.scroll();
     },
-    // watch: {
-    //     '$route' (to, from) {
-    //      if(from.query.q && to.query.q){ 
-    //         this.$router.go()
-    //        }    
-    //    }
-    // },
+    watch: {
+        '$route' (to, from) {
+            if(from.query.q !== to.query.q){ 
+                // this.$route.name 
+                this.getDefinitions(to.query.q)
+                //this.$router.go()
+            }    
+        }
+    },
     methods: { 
         ...mapActions({
             getDefinitionCollections: 'definition/getcollection'
@@ -94,10 +95,7 @@ export default {
         },
         onSearch(e) {
             if (e.keyCode === 13 && this.searchedValue) {
-                this.isLoadingMore = true
-                this.hasMore = true
-                this.definitions = []
-                this.getDefinitions(this.searchedValue)
+                                this.getDefinitions(this.searchedValue)
                 this.$router.push({
                     // name: 'dashboard',
                     query: { q: this.searchedValue }
@@ -107,6 +105,9 @@ export default {
             }
         },
         async getDefinitions(q) {
+            this.isLoadingMore = true
+            this.hasMore = true
+            this.definitions = []
             let response = await this.getDefinitionCollections({ q })
             this.definitions = response.data.data
             this.next = response.data.links.next
