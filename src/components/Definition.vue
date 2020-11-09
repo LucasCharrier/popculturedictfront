@@ -3,7 +3,12 @@
     <div class="card" :style="{ marginBottom: '20px', marginTop: '20px' }">
         <div class="card-content">
             <p class="title">
-                {{ definition.word.name }}
+                <router-link :to="{
+                        name: 'dashboard',
+                        query: {
+                            q: definition.word.name
+                        }
+                    }" append>{{ definition.word.name }}</router-link>
             </p>
             <div class="content">
                 <p class="subtitle definition">
@@ -61,9 +66,12 @@
     .card {
         border-radius: 10px;
     }
-/* font-family: 'Bree Serif', serif;
-font-family: 'Copse', serif;
-font-family: 'Montserrat', sans-serif;
-font-family: 'Open Sans', sans-serif;
-font-family: 'Quicksand', sans-serif; */
+    .title a {
+        color: #363636;
+    }
+    /* font-family: 'Bree Serif', serif;
+    font-family: 'Copse', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Quicksand', sans-serif; */
 </style>
