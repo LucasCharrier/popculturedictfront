@@ -1,12 +1,12 @@
 <template>
-    <div :style="{marginLeft: 'auto', marginRight: 'auto', width: '600px'}">
+    <div :style="{marginLeft: 'auto', marginRight: 'auto', maxWidth: '600px'}">
         <div v-for="definition in definitions" :key="definition.id">
             <Definition :definition="definition"/>
         </div>
-        <div v-if="isLoadingMore" :style="{ width: '300px', margin: '10px', textAlign: 'center' }">
+        <div v-if="isLoadingMore" :style="{ maxWidth: '600px', margin: '10px', textAlign: 'center' }">
             <p>Loading...</p>
         </div>
-        <div v-if="!hasMore" :style="{ width: '300px', margin: '10px', textAlign: 'center' }">
+        <div v-if="!hasMore" :style="{ maxWidth: '600px', margin: '10px', textAlign: 'center' }">
             <p>Plus de résultat</p>
         </div>
     </div>
@@ -48,11 +48,9 @@ export default {
                 if (!this.hasMore || this.isLoadingMore) {
                     return
                 }
-                console.log(appElement.offsetHeight)
                 let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= appElement.offsetHeight - 150;
                 if (bottomOfWindow && this.next) {
                     this.isLoadingMore = true
-                    console.log('LCS ON LOAD MORE')
                     const nextUrl = this.next
                     this.isLoadingMore
                     this.next = null

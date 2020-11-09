@@ -49,7 +49,6 @@ export default {
         }
     },
     mounted() {
-        console.log('LCS ON MOUNT')
         this.scroll();
     },
     // watch: {
@@ -73,7 +72,6 @@ export default {
                 let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= appElement.offsetHeight - 150;
                 if (bottomOfWindow && this.next) {
                     this.isLoadingMore = true
-                    console.log('LCS ON LOAD MORE')
                     const nextUrl = this.next
                     this.isLoadingMore
                     this.next = null
@@ -96,7 +94,6 @@ export default {
         },
         onSearch(e) {
             if (e.keyCode === 13 && this.searchedValue) {
-                console.log('LCS TEST TOTO', this.searchedValue)
                 this.isLoadingMore = true
                 this.hasMore = true
                 this.definitions = []
@@ -110,7 +107,6 @@ export default {
             }
         },
         async getDefinitions(q) {
-            console.log('LCS DASHBOARD VUE', q)
             let response = await this.getDefinitionCollections({ q })
             this.definitions = response.data.data
             this.next = response.data.links.next
