@@ -38,7 +38,7 @@
                             }
                         }">#{{ tag.text }}</router-link>
                     </span>
-                    <a :style="{ position: 'absolute', bottom: '5px', right: '10px'}">www.lepopdictionnaire.com</a>
+                    <a :style="{ position: 'absolute', bottom: '5px', right: '10px', color: '#363636'}">www.thepopdictionnaire.com</a>
                     <!-- <br>
                     par <router-link :to="{
                             name: 'profile',

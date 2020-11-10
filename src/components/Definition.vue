@@ -64,7 +64,7 @@
             </a>
         </div>
         <ShareModal v-if="modalVisible"
-            :visible="moddalVisible"
+            :visible="modalVisible"
             @onHandleOk="onHandleOk"
             @onHandleCancel="onHandleCancel"
             :definition="data" />
@@ -148,10 +148,10 @@
                 }
             },
             onHandleOk() {
-
+                this.modalVisible = false
             },
             onHandleCancel() {
-
+                this.modalVisible = false
             }
         }
     }
