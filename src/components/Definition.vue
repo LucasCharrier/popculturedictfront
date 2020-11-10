@@ -6,18 +6,18 @@
                 <router-link :to="{
                         name: 'dashboard',
                         query: {
-                            q: definition.word.name
+                            q: data.word.name
                         }
-                    }" append>{{ definition.word.name }}</router-link>
+                    }" append>{{ data.word.name }}</router-link>
             </p>
             <div class="content">
                 <p class="subtitle definition">
-                    {{ definition.text }}
+                    {{ data.text }}
                 </p>
                 <p class="subtitle exemple" :style="{ fontStyle: 'italic' }">
-                    {{ definition.exemple }}
+                    {{ data.exemple }}
                 </p>
-                <span v-for="tag in definition.tags" :key="tag.id" :style="{marginRight: '10px'}">
+                <span v-for="tag in data.tags" :key="tag.id" :style="{marginRight: '10px'}">
                     <router-link :to="{
                         name: 'tag',
                         params: {
@@ -30,31 +30,32 @@
                 par <router-link :to="{
                         name: 'profile',
                         params: {
-                            id: definition.user.id
+                            id: data.user.id
                         }
-                    }">{{ definition.user.name }}</router-link>
+                    }">{{ data.user.name }}</router-link>
             </div>
             <div class="field has-addons">
                 <p class="control">
                     <a
                         @click.prevent="likeAction"
-                        :class="{button: true, up: true, active: definition.user_reaction === 'like'}">
+                        :class="{button: true, up: true, active: data.user_reaction === 'like'}">
                         <span class="icon is-small">
                             <i class="fas fa-thumbs-up"></i>
                         </span>
-                        <span>{{definition.user.id + (definition.text.length > 100 ? (100 - definition.word.name.length) : definition.text.length + 50) + definition.like }}</span>
+                        <span>{{data.user.id + (data.text.length > 100 ? (100 - data.word.name.length) : data.text.length + 50) + data.like }}</span>
                     </a>
                 </p>
                 <p class="control">
                     <a
                         @click.prevent="dislikeAction"
-                        :class="{button: true, down: true, active: definition.user_reaction === 'dislike'}">
+                        :class="{button: true, down: true, active: data.user_reaction === 'dislike'}">
                         <span class="icon is-small">
                             <i class="fas fa-thumbs-down"></i>
                         </span>
-                        <span>{{definition.user.id + (definition.text.length > 50 ? (50 - definition.word.name.length) : definition.text.length) + definition.dislike}}</span>
+                        <span>{{data.user.id + (data.text.length > 50 ? (50 - data.word.name.length) : data.text.length) + data.dislike}}</span>
                     </a>
                 </p>
+                <!-- <a class="button" :style="{ position: 'absolute', bottom: '20px', right: '20px'}" href="" @click.prevent="print">Twitter</a> -->
             </div>
         </div>
         <!-- <footer class="card-footer">
@@ -70,11 +71,11 @@
             </span>
             </p>
         </footer> -->
-        <ShareModal v-if="visible"
-            :visible="visible"
+        <ShareModal v-if="modalVisible"
+            :visible="moddalVisible"
             @onHandleOk="onHandleOk"
             @onHandleCancel="onHandleCancel"
-            :definition="definition" />
+            :definition="data" />
     </div>
 </template> 
 <script>
@@ -86,7 +87,10 @@
         props: ['definition'],
         data() {
             return {
-                visible: false
+                modalVisible: false,
+                data: {
+                    ...this.definition
+                }
             }
         },
         components: {
@@ -102,8 +106,7 @@
                 // add option type to get the image version
                 // if not provided the promise will return 
                 // the canvas.
-                console.log('LCS DEFINITION PRINT')
-                this.visible = true
+                this.modalVisible = true
                 // const options = {
                 //     type: 'dataURL'
                 // }
@@ -111,12 +114,12 @@
                 // console.log(this.output)
             },
             likeAction() {
-                console.log('LCS TEST LIKE')
-                this.like({ id: this.definition.id })
+                this.data.user_reaction = 'like'
+                this.like({ id: this.data.id })
             },
             dislikeAction() {
-                console.log('LCS TEST DISLIKE')
-                this.dislike({ id: this.definition.id })
+                this.data.user_reaction = 'dislike'
+                this.dislike({ id: this.data.id })
             },
             onHandleOk() {
 
