@@ -20,9 +20,9 @@
             </div>
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-                    <template>
-                        <a class="navbar-item" key="addDef" @click.prevent="showModal">Ajouter une définition</a>
-                    </template>
+                    <a class="navbar-item is-hidden-mobile is-hidden-tablet-only" key="addDef" @click.prevent="showModal">Ajouter une définition</a>
+                    <a target="_blank" class="navbar-item is-hidden-desktop-only is-hidden-widescreen-only"  :href="document.location.origin + '/cgu.html'">CGU</a>
+                    <a target="_blank" class="navbar-item is-hidden-desktop-only is-hidden-widescreen-only" :href="document.location.origin + '/privacy_policy.html'">Politique de confidentialité</a>
                 </div>
                 <div class="navbar-end">
                     <div class="navbar-item" v-if="authenticated">
@@ -92,8 +92,12 @@
                 visible: false,
                 visibleSignUpModal: false,
                 visibleSignInModal: false,
-                visibleSignUpOrInModal: false
+                visibleSignUpOrInModal: false,
+                document: document
             }
+        },
+        mounted() {
+            this.setBugerMenu()
         },
         components: {
             CreateDefModal,
@@ -147,6 +151,27 @@
             signOut() {
                 this.signOutAction().then(() => {
                 })
+            },
+            setBugerMenu() {
+                const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+                // Check if there are any navbar burgers
+                if ($navbarBurgers.length > 0) {
+
+                    // Add a click event on each of them
+                    $navbarBurgers.forEach( el => {
+                        el.addEventListener('click', () => {
+
+                            // Get the target from the "data-target" attribute
+                            const target = el.dataset.target;
+                            const $target = document.getElementById(target);
+
+                            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                            el.classList.toggle('is-active');
+                            $target.classList.toggle('is-active');
+
+                        });
+                    });
+                }
             }
         }
     }
