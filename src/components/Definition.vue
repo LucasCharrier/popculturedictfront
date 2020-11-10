@@ -59,7 +59,7 @@
             </div>
             <a class="button delete-button is-white"
                 @click.prevent="deleteAction"
-                v-if="user.id === data.user.id">
+                v-if="user?.id === data.user.id">
                 <i class="fas fa-trash"/>
             </a>
         </div>
