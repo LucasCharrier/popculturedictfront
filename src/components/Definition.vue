@@ -55,7 +55,7 @@
                         <span>{{data.user.id + (data.text.length > 50 ? (50 - data.word.name.length) : data.text.length) + data.dislike}}</span>
                     </a>
                 </p>
-                <!-- <a class="button" :style="{ position: 'absolute', bottom: '20px', right: '20px'}" href="" @click.prevent="print">Twitter</a> -->
+                <a class="button" :style="{ position: 'absolute', bottom: '20px', right: '20px'}" href="" @click.prevent="print">Twitter</a>
             </div>
             <a class="button delete-button is-white"
                 @click.prevent="deleteAction"
@@ -63,19 +63,6 @@
                 <i class="fas fa-trash"/>
             </a>
         </div>
-        <!-- <footer class="card-footer">
-
-            <p class="card-footer-item">
-            <span>
-                View on <a href="" @click.prevent="print">Twitter</a>
-            </span>
-            </p>
-            <p class="card-footer-item">
-            <span>
-                Share on <a href="#">Facebook</a>
-            </span>
-            </p>
-        </footer> -->
         <ShareModal v-if="modalVisible"
             :visible="moddalVisible"
             @onHandleOk="onHandleOk"
