@@ -114,12 +114,24 @@
                 // console.log(this.output)
             },
             likeAction() {
-                this.data.user_reaction = 'like'
-                this.like({ id: this.data.id })
+                if (this.data.user_reaction === 'dislike')  {
+                    this.data.dislike -= 1
+                }
+                if (this.data.user_reaction !== 'like') {
+                    this.data.user_reaction = 'like'
+                    this.data.like += 1
+                    this.like({ id: this.data.id })
+                }
             },
             dislikeAction() {
-                this.data.user_reaction = 'dislike'
-                this.dislike({ id: this.data.id })
+                if (this.data.user_reaction === 'like')  {
+                    this.data.like -= 1
+                }
+                if (this.data.user_reaction !== 'dislike') {
+                    this.data.user_reaction = 'dislike'
+                    this.data.dislike += 1
+                    this.dislike({ id: this.data.id })
+                }
             },
             onHandleOk() {
 
