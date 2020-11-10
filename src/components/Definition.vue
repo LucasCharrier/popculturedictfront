@@ -42,7 +42,7 @@
                         <span class="icon is-small">
                             <i class="fas fa-thumbs-up"></i>
                         </span>
-                        <span>{{definition.user.id + (definition.text.length > 100 ? (100 - definition.word.name.length) : definition.text.length) + definition.like }}</span>
+                        <span>{{definition.user.id + (definition.text.length > 100 ? (100 - definition.word.name.length) : definition.text.length + 50) + definition.like }}</span>
                     </a>
                 </p>
                 <p class="control">
@@ -52,7 +52,7 @@
                         <span class="icon is-small">
                             <i class="fas fa-thumbs-down"></i>
                         </span>
-                        <span>{{definition.user.id + (definition.text.length > 50 ? (50 + definition.word.name.length) : definition.text.length) + definition.dislike}}</span>
+                        <span>{{definition.user.id + (definition.text.length > 50 ? (50 - definition.word.name.length) : definition.text.length) + definition.dislike}}</span>
                     </a>
                 </p>
             </div>
