@@ -8,6 +8,7 @@
         <portal-target name="signUpModal"/>
         <portal-target name="createDefModal"/>
         <portal-target name="shareModal"/>
+        <portal-target name="signUpOrInModal" />
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <portal to="signUpModal">
-        <div v-show="visible" class="modal is-active" @click="handleCancel">
+        <div v-show="visible || this.showModal" class="modal is-active" @click="handleCancel">
             <div class="modal-background"></div>
             <div @click.stop class="modal-content">
                 <div class="box">
@@ -36,11 +36,16 @@
     </portal>
 </template>
 <script>
-    import { mapActions } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
     export default {
         name: 'dasboard',
         props: {
             visible: Boolean
+        },
+        computed: {
+            ...mapGetters({
+                showModal: 'modal/signUpVisible',
+            })
         },
         data() {
             return {
@@ -53,13 +58,16 @@
         },
         methods: { 
             ...mapActions({
-                signUp: 'auth/signUp'
+                signUp: 'auth/signUp',
+                hideSignUpModal: 'modal/hideSignUpModal'
             }),
             handleOk() {
                 this.$emit('onHandleOk')
+                this.hideSignUpModal()
             },
             handleCancel() {
                 this.$emit('onHandleCancel')
+                this.hideSignUpModal()
             },
             submit() {
                 this.signUp(this.form).then(() => {

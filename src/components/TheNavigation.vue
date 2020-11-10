@@ -80,6 +80,10 @@
             :visible="visibleSignInModal"
             @onHandleOk="handleOkSignInModal"
             @onHandleCancel="handleCancelSignInModal"/>
+        <SignUpOrInModal
+            :visible="visibleSignUpOrInModal"
+            @onHandleOk="handleOkSignUpOrInModal"
+            @onHandleCancel="handleCancelSignUpOrInModal"/>
     </div>
 </template>
 <script>
@@ -87,6 +91,8 @@
     import CreateDefModal from '@/components/CreateDefModal.vue'
     import SignUpModal from '@/components/SignUpModal.vue'
     import SignInModal from '@/components/SignInModal.vue'
+    import SignUpOrInModal from '@/components/SignUpOrInModal.vue'
+
     export default {
         computed: {
             ...mapGetters({
@@ -98,13 +104,15 @@
             return {
                 visible: false,
                 visibleSignUpModal: false,
-                visibleSignInModal: false
+                visibleSignInModal: false,
+                visibleSignUpOrInModal: false
             }
         },
         components: {
             CreateDefModal,
             SignUpModal,
-            SignInModal
+            SignInModal,
+            SignUpOrInModal
         },
         methods: {
             ...mapActions({
@@ -137,6 +145,12 @@
             },
             handleCancelSignInModal() {
                 this.visibleSignInModal = false;
+            },
+            handleOkSignUpOrInModal() {
+                this.visibleSignUpOrInModal = false;
+            },
+            handleCancelSignUpOrInModal() {
+                this.visibleSignUpOrInModal = false;
             },
             signOut() {
                 this.signOutAction().then(() => {

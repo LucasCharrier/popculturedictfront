@@ -79,7 +79,7 @@
     </div>
 </template> 
 <script>
-    import { mapActions } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
 
     import ShareModal from '@/components/ShareModal'
 
@@ -96,10 +96,18 @@
         components: {
             ShareModal
         },
+        computed: {
+            ...mapGetters({
+                authenticated: 'auth/authenticated',
+                user: 'auth/user'
+            })
+        },
         methods: {
             ...mapActions({
                 like: 'user/like',
                 dislike: 'user/dislike',
+                showSignUpOrInModal: 'modal/showSignUpOrInModal',
+                // user: 'auth/user'
             }),
             async print() {
                 // const el = this.$refs.printMe;
@@ -114,6 +122,10 @@
                 // console.log(this.output)
             },
             likeAction() {
+                if (!this.authenticated) {
+                    this.showSignUpOrInModal()
+                    return
+                }
                 if (this.data.user_reaction === 'dislike')  {
                     this.data.dislike -= 1
                 }
@@ -124,6 +136,10 @@
                 }
             },
             dislikeAction() {
+                if (!this.authenticated) {
+                    this.showSignUpOrInModal()
+                    return
+                }
                 if (this.data.user_reaction === 'like')  {
                     this.data.like -= 1
                 }

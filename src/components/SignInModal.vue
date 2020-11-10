@@ -1,6 +1,6 @@
 <template>
     <portal to="signInModal">
-        <div v-show="visible" class="modal is-active" @click="handleCancel">
+        <div v-show="visible || showModal" class="modal is-active" @click="handleCancel">
             <div class="modal-background"></div>
             <div @click.stop class="modal-content">
                 <div class="box">
@@ -31,11 +31,17 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
     name: 'signin',
     components: {
 
+    },
+    computed: {
+        ...mapGetters({
+            showModal: 'modal/signInVisible',
+        })
     },
     props: {
         visible: Boolean
@@ -50,13 +56,16 @@ export default {
     },
     methods: { 
         ...mapActions({
-            signIn: 'auth/signIn'
+            signIn: 'auth/signIn',
+            hideSignInModal: 'modal/hideSignUpModal'
         }),
         handleOk() {
             this.$emit('onHandleOk')
+            this.hideSignInModal()
         },
         handleCancel() {
             this.$emit('onHandleCancel')
+            this.hideSignInModal()
         },
         submit() {
             this.signIn(this.form).then(() => {
