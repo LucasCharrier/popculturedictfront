@@ -5,7 +5,7 @@
             <div class="modal-card">
                 <header class="modal-card-head">
                 <p class="modal-card-title">Partager sur les réseaux</p>
-                <button class="delete" aria-label="close"></button>
+                <button class="delete" aria-label="close" @click="handleCancel"></button>
                 </header>
                 <section class="modal-card-body">
                 <!-- <div @click.stop class="modal-content"> -->
@@ -23,7 +23,7 @@
                         class="button is-primary">share on twitter</a>
                 </section>
             </div>
-            <button class="modal-close is-large" aria-label="close"></button>
+            <button class="modal-close is-large" aria-label="close" @click="handleCancel"></button>
         </div>
     </portal>
 </template>
