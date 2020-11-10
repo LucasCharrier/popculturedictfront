@@ -57,6 +57,11 @@
                 </p>
                 <!-- <a class="button" :style="{ position: 'absolute', bottom: '20px', right: '20px'}" href="" @click.prevent="print">Twitter</a> -->
             </div>
+            <a class="button delete-button is-white"
+                @click.prevent="deleteAction"
+                v-if="user.id === data.user.id">
+                <i class="fas fa-trash"/>
+            </a>
         </div>
         <!-- <footer class="card-footer">
 
@@ -107,6 +112,7 @@
                 like: 'user/like',
                 dislike: 'user/dislike',
                 showSignUpOrInModal: 'modal/showSignUpOrInModal',
+                delete: 'definition/delete'
                 // user: 'auth/user'
             }),
             async print() {
@@ -120,6 +126,11 @@
                 // }
                 // this.output = await this.$html2canvas(el, options);
                 // console.log(this.output)
+            },
+            deleteAction() {
+                this.delete({
+                    id: this.data.id
+                })
             },
             likeAction() {
                 if (!this.authenticated) {
@@ -187,6 +198,11 @@
         background-color: mediumaquamarine;
         /* background-color: #05ff56; */
         /* background-color: #EFFF00; */
+    }
+    .delete-button {
+        position: absolute;
+        right: 20px;
+        top: 20px;
     }
     /* font-family: 'Bree Serif', serif;
     font-family: 'Copse', serif;

@@ -31,6 +31,10 @@ export default {
             let response = await axios.get(`definitions/${credentials.id}`)
             return response
         },
+        async delete(_, credentials) {
+            let response = await axios.post(`definitions/${credentials.id}`)
+            return response
+        },
         async getcollection (_, credentials) {
             console.log('LCS GET COLLECTION', credentials)
             let response = await axios.get('definitions', { params: credentials})
