@@ -39,6 +39,10 @@
                             </label>
                             <input class="input"  type="password" name="password" id="password" v-model="form.password">
                         </div>
+                        <label class="checkbox">
+                            <input type="checkbox" v-model="form.accepted">
+                            J'accepte les <a :href="document.location.origin + '/cgu.html'" target="_blank">CGUs</a> et <a :href="document.location.origin + '/privacy_policy.html'" target="_blank">la politique de confidentialité</a>
+                        </label>
                         <div class="field is-grouped is-grouped-right">
                             <div class="control">
                                 <button class="button is-primary" type="submit" v-if="state === 'isSignUp'">Sign Up</button>
@@ -69,9 +73,11 @@
                 form: {
                     email: '',
                     password: '',
-                    name: ''
+                    name: '',
+                    accepted: false
                 },
-                state: undefined
+                state: undefined,
+                document: document
             }
         },
         methods: { 
@@ -92,6 +98,10 @@
             },
             submit() {
                 if (this.state === 'isSignUp') {
+                    if (!this.form.accepted) {
+                        alert('Il faut accepter la politique de confidentialité et les CGUs')
+                        return
+                    }
                     this.signUp(this.form).then(() => {
                         this.$emit('onHandleOk')
                         this.hideSignUpOrInModal()

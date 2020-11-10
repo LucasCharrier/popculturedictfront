@@ -19,10 +19,14 @@
                         </div>
                         <div class="field">
                             <label for="password" class="label">
-                                PMot de passe
+                                Mot de passe
                             </label>
                             <input class="input"  type="password" name="password" id="password" v-model="form.password">
                         </div>
+                        <label class="checkbox">
+                            <input type="checkbox" v-model="form.accepted">
+                            J'accepte les <a :href="document.location.origin + '/cgu.html'" target="_blank">CGUs</a> et <a :href="document.location.origin + '/privacy_policy.html'" target="_blank">la politique de confidentialité</a>
+                        </label>
                         <div class="field is-grouped is-grouped-right">
                             <div class="control">
                                 <button class="button is-primary" type="submit" >Sign In</button>
@@ -52,8 +56,10 @@
                 form: {
                     email: '',
                     password: '',
-                    name: ''
-                }
+                    name: '',
+                   accepted: false
+                },
+                document: document
             }
         },
         methods: { 
@@ -70,6 +76,10 @@
                 this.hideSignUpModal()
             },
             submit() {
+                if (!this.form.accepted) {
+                    alert('Il faut accepter la politique de confidentialité et les CGUs')
+                    return
+                }
                 this.signUp(this.form).then(() => {
                     
                 })
