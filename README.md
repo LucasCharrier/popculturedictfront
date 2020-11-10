@@ -1,4 +1,4 @@
-# blog-client-vue
+# Front Vuejs
 
 ## Project setup
 ```
