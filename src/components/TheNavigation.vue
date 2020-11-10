@@ -7,17 +7,9 @@
                 }">
                     <img src="@/assets/images/logo.png" height="28">
                 </router-link>
-                <template v-if="authenticated">
+                <template>
                     <a role="button" class="navbar-burger burger navbar-central-button" aria-label="menu" @click.prevent="showModal">
-                        Ajouter une définition
-                    </a>
-                </template>
-                <template v-else>
-                    <a class="button is-light navbar-burger burger"  @click.prevent="showSignUpModal">
-                        Sign Up
-                    </a>
-                    <a class="button is-light navbar-burger burger" @click.prevent="showSignInModal">
-                        Log in
+                        <i class="fa fa-plus-circle"/> Ajouter une définition
                     </a>
                 </template>
                 <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -28,12 +20,7 @@
             </div>
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-                    <!-- <router-link class="navbar-item" :to="{
-                        name: 'tags'
-                    }">
-                        Tags
-                    </router-link> -->
-                    <template v-if="authenticated">
+                    <template>
                         <a class="navbar-item" key="addDef" @click.prevent="showModal">Ajouter une définition</a>
                     </template>
                 </div>
@@ -116,10 +103,15 @@
         },
         methods: {
             ...mapActions({
-                signOutAction: 'auth/signOut'
+                signOutAction: 'auth/signOut',
+                showSignUpOrInModal: 'modal/showSignUpOrInModal'
             }),
             showModal() {
-                this.visible = true;
+                if (!this.authenticated) {
+                    this.showSignUpOrInModal()
+                } else {
+                    this.visible = true
+                }
             },
             showSignUpModal() {
                 this.visibleSignUpModal = true;
