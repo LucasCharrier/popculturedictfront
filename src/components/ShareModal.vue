@@ -19,7 +19,7 @@
                     <br>
                     <a
                         target="_blank"
-                        :href="'https://twitter.com/intent/tweet?text='+ encodeURI(`https://www.thepopdictionnaire.com : ${definition.word.name}`)"
+                        :href="'https://twitter.com/intent/tweet?text='+ encodeURI(`https://www.thepopdictionnaire.com?q=${definition.word.name} : ${definition.word.name}`)"
                         class="button is-primary">share on twitter</a>
                 </section>
             </div>
