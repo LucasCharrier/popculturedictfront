@@ -17,6 +17,11 @@
                 <p class="subtitle exemple" :style="{ fontStyle: 'italic' }">
                     {{ data.exemple }}
                 </p>
+                <div v-if="data.media_url">
+                    <img :src="data.media_url"/>
+                    <p><a :href="data.media_url">via giphy</a></p>
+                    <br>
+                </div>
                 <span v-for="tag in data.tags" :key="tag.id" :style="{marginRight: '10px'}">
                     <router-link :to="{
                         name: 'tag',
@@ -55,8 +60,11 @@
                         <span>{{data.user.id + (data.text.length > 50 ? (50 - data.word.name.length) : data.text.length) + data.dislike}}</span>
                     </a>
                 </p>
-                <a class="button" :style="{ position: 'absolute', bottom: '20px', right: '20px'}" href="" @click.prevent="print">Twitter</a>
             </div>
+            <a class="button"
+                :style="{ position: 'absolute', bottom: '20px', right: '20px'}"
+                href="" @click.prevent="print">Twitter</a>
+                
             <a class="button delete-button is-white"
                 @click.prevent="deleteAction"
                 v-if="(user || {}).id === data.user.id">
