@@ -30,28 +30,28 @@
         }
     }
 
-    </script>
-    <style>
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color:ghostwhite;
-        }
-        .floating-utils-box {
-            position: fixed;
-            right: 10px;
-            bottom: 10px;
-        }
-        .toasted.toasted-primary.success {
-            background-color: mediumaquamarine;
-        }
-        .toasted.outline.success {
-            color: #363636;
-            box-shadow: 0 2px 0 black;
-            border-color: black;
-        }
-        /* font-family: 'Bree Serif', serif;
-        font-family: 'Copse', serif;
-        font-family: 'Montserrat', sans-serif;
-        font-family: 'Open Sans', sans-serif;P
-        font-family: 'Quicksand', sans-serif; */
+</script>
+<style>
+    body {
+        font-family: 'Quicksand', sans-serif;
+        background-color:ghostwhite;
+    }
+    .floating-utils-box {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+    }
+    .toasted.toasted-primary.toaster-tpd.success {
+        background-color: mediumaquamarine;
+    }
+    .toasted.outline.success {
+        color: #363636;
+        box-shadow: 0 2px 0 black;
+        border-color: black;
+    }
+    /* font-family: 'Bree Serif', serif;
+    font-family: 'Copse', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;P
+    font-family: 'Quicksand', sans-serif; */
 </style>

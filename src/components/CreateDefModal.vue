@@ -78,9 +78,11 @@
                     media_url: this.selectedGif ? this.selectedGif.images.fixed_height.url : undefined,
                     tags: this.form.tags.split(',').map(t => t.trim()).filter(t => t)
                 })
+                this.$emit('onHandleOk')
                 this.$toasted.success('La définition a été créée ! 🥳 ', {
                     theme: 'outline',
                     duration: 2000,
+                    className: 'toaster-tpd',
                     action : {
                         text : 'Fermer',
                         onClick : (e, toastObject) => {
@@ -88,7 +90,6 @@
                         }
                     }
                 })
-                this.$emit('onHandleOk')
                 
             },
             async onSearch(e) {
