@@ -5,7 +5,8 @@
                 <router-link class="navbar-item" :to="{
                     name: 'dashboard'
                 }">
-                    <img src="@/assets/images/logo.png" height="28">
+                HOMEPAGE
+                <!-- <img src="@/assets/images/logo.png" height="28"> -->
                 </router-link>
                 <template>
                     <a role="button" class="navbar-burger burger navbar-central-button" aria-label="menu" @click.prevent="showModal">
@@ -21,8 +22,11 @@
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
                     <a class="navbar-item is-hidden-mobile is-hidden-tablet-only" key="addDef" @click.prevent="showModal">Ajouter une définition</a>
-                    <a target="_blank" class="navbar-item is-hidden-desktop-only is-hidden-widescreen-only"  :href="document.location.origin + '/cgu.html'">CGU</a>
-                    <a target="_blank" class="navbar-item is-hidden-desktop-only is-hidden-widescreen-only" :href="document.location.origin + '/privacy_policy.html'">Politique de confidentialité</a>
+                    <router-link :to="{
+                    name: 'cgu'}" class="navbar-item is-hidden-desktop-only is-hidden-widescreen-only">CGU</router-link>
+                    <router-link :to="{
+                    name: 'privacy_policy'}" class="navbar-item is-hidden-desktop-only is-hidden-widescreen-only">Politique de confidentialité</router-link>
+                
                 </div>
                 <div class="navbar-end">
                     <div class="navbar-item" v-if="authenticated">
@@ -75,7 +79,7 @@
 </template>
 <script>
     import { mapGetters, mapActions } from 'vuex'
-    import CreateDefModal from '@/components/CreateDefModal.vue'
+    import CreateDefModal from '../components/CreateDefModal.vue'
     import SignUpModal from '@/components/SignUpModal.vue'
     import SignInModal from '@/components/SignInModal.vue'
     import SignUpOrInModal from '@/components/SignUpOrInModal.vue'
@@ -93,10 +97,11 @@
                 visibleSignUpModal: false,
                 visibleSignInModal: false,
                 visibleSignUpOrInModal: false,
-                document: document
+                document: ''
             }
         },
         mounted() {
+            this.document = document
             this.setBugerMenu()
         },
         components: {

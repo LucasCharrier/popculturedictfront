@@ -30,9 +30,19 @@
                             </label>
                             <textarea class="textarea" type="text" name="exemple" id="exemple" v-model="form.tags"/>
                         </div>
+                        <div class="control">
+                            <label class="radio">
+                                <input type="radio"  id="public" value="PUBLIC" v-model="form.visibility">
+                                Publique
+                            </label>
+                            <label class="radio">
+                                <input type="radio"  id="private" value="PRIVATE" v-model="form.visibility">
+                                Privé (pour des private jock)
+                            </label>
+                        </div>
                         <div class="field is-grouped is-grouped-right">
                             <div class="control">
-                                <button class="button is-primary" type="submit" @click="submit">Ajouter</button>
+                                <button class="button is-primary" type="submit" @click="submit">Créer definition</button>
                             </div>
                         </div>
                     </div>
@@ -57,7 +67,8 @@
                     text: '',
                     tags: '',
                     exemple: '',
-                    gif: undefined
+                    gif: undefined,
+                    visibility: 'PUBLIC'
                 },
                 selectedGif: undefined,
                 gifs: [],

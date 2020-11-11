@@ -25,7 +25,7 @@
                         </div>
                         <label class="checkbox">
                             <input type="checkbox" v-model="form.accepted">
-                            J'accepte les <a :href="document.location.origin + '/cgu.html'" target="_blank">CGUs</a> et <a :href="document.location.origin + '/privacy_policy.html'" target="_blank">la politique de confidentialité</a>
+                            J'accepte les <router-link :to="{ name: 'cgu'}" target="_blank">CGUs</router-link> et <router-link :to="{ name: 'privacy_policy'}">la politique de confidentialité</router-link>
                         </label>
                         <div class="field is-grouped is-grouped-right">
                             <div class="control">
@@ -59,7 +59,7 @@
                     name: '',
                    accepted: false
                 },
-                document: document
+                // document: document
             }
         },
         methods: { 

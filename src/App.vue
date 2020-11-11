@@ -11,8 +11,12 @@
         <portal-target name="signUpOrInModal" />
         <div class="is-hidden-mobile is-hidden-tablet-only floating-utils-box">
             <ul>
-                <li><a :href="document.location.origin + '/cgu.html'">CGU</a></li>
-                <li><a :href="document.location.origin + '/privacy_policy.html'">Politique de confidentialité</a></li>
+                <li>
+                    <router-link :to="{name: 'cgu'}" >CGU</router-link>
+                </li>
+                <li>
+                    <router-link :to="{name: 'privacy_policy'}">Politique de confidentialité</router-link>
+                </li>
             </ul>
         </div>
     </div>
@@ -25,13 +29,18 @@
         components: {
             TheNavigation 
         },
+        mounted() {
+            this.document = this.document
+        },
         data() {
-            return { document: document }
+            return { 
+                document: ''
+            }
         }
     }
 
 </script>
-<style>
+<style lang='css'>
     body {
         font-family: 'Quicksand', sans-serif;
         background-color:ghostwhite;
@@ -41,10 +50,10 @@
         right: 10px;
         bottom: 10px;
     }
-    .toasted.toasted-primary.toaster-tpd.success {
+    .toasted.toaster-tpd.toasted-primary.success {
         background-color: mediumaquamarine;
     }
-    .toasted.outline.success {
+    .toasted.toaster-tpd.outline.success {
         color: #363636;
         box-shadow: 0 2px 0 black;
         border-color: black;

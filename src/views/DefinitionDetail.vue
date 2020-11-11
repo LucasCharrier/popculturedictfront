@@ -9,7 +9,7 @@
 </template>
 <script>
     import { mapActions } from 'vuex'
-    import Definition from '@/components/Definition'
+    import Definition from '../components/Definition.vue'
 
 
     export default {

@@ -29,7 +29,7 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
-import SmallDefinition from '@/components/SmallDefinition'
+import SmallDefinition from '@/components/SmallDefinition.vue'
 
 export default {
     name: 'shareModal',

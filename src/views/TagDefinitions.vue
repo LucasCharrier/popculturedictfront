@@ -15,7 +15,7 @@
 import { mapActions } from 'vuex'
 import axios from 'axios'
 
-import Definition from '@/components/Definition'
+import Definition from '@/components/Definition.vue'
 
 export default {
     name: 'dasboard',
@@ -26,24 +26,63 @@ export default {
     created () {
         // fetch the data when the view is created and the data is
         // already being observed
-        this.getDefinitions()
+        // this.getDefinitions()
+    },
+    serverPrefetch() {
+        return this.getDefinitions(true)
+    },
+    watch: {
+        '$route' (to, from) {
+            if(from.params.id !== to.params.id){ 
+                this.getDefinitions()
+            }    
+        }
     },
     data() {
+        console.log('LCS TAG DEF DATA', this.$store.state.definition.definitions.tags)
         return {
             form: {
                 name: '',
                 text: ''
             },
-            definitions: []
+            isLoadingMore: false,
+            hasMore: true,
+            definitions: (this.$store.state.definition.definitions.tags || {}).data,
+            next: ((this.$store.state.definition.definitions.tags || {}).links || {}).next,
         }
     },
     mounted() {
-        this.scroll();
+        if (window) {
+            this.scroll();
+        }
+        console.log('LCS MOUNTED', this.definitions)
+        if (!this.definitions) {
+            this.getDefinitions()
+        } else {
+            console.log("LCS CLEAR COLLECITON BY TAG")
+            this.clearCollectionsByTag()
+        }
     },
     methods: { 
         ...mapActions({
-            getDefinitionCollectionsByTag: 'definition/getCollectionByTag'
+            getDefinitionCollectionsByTag: 'definition/getCollectionByTag',
+            clearCollectionsByTag:'definition/clearCollectionByTag'
         }),
+        // async buildDefinitions() {
+        //     console.log('LCS BUILD DEFINITIONS')
+        //     this.isLoadingMore = true
+        //     this.hasMore = true
+        //     this.definitions = []
+        //     let response = await this.getDefinitionCollectionsByTag({
+        //         tagId: this.$route.params.id
+        //     })
+        //     this.definitions = response.data.data
+        //     this.next = response.data.links.next
+        //     this.isLoadingMore = false
+        //     if (!this.next) {
+        //         this.hasMore = false
+        //     }
+        // },
         // async getDefinitions() {
         //     let response = await this.getDefinitionCollectionsByTag({
         //         tagId: this.$route.params.id
@@ -79,13 +118,15 @@ export default {
                 }
             };
         },
-        async getDefinitions() {
+        async getDefinitions(prefetched) {
             this.isLoadingMore = true
             this.hasMore = true
             this.definitions = []
             let response = await this.getDefinitionCollectionsByTag({
-                tagId: this.$route.params.id
+                tagId: this.$route.params.id,
+                prefetched
             })
+            // return response
             this.definitions = response.data.data
             this.next = response.data.links.next
             this.isLoadingMore = false

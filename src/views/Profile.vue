@@ -15,32 +15,51 @@
 import { mapActions } from 'vuex'
 import axios from 'axios'
 
-import Definition from '@/components/Definition'
+import Definition from '../components/Definition.vue'
 
 export default {
-    name: 'dasboard',
+    name: 'profile',
     components: {
         Definition,
     },
     created () {
         // fetch the data when the view is created and the data is
         // already being observed
-        this.getDefinitions()
+        //this.getDefinitions()
     },
     data() {
         return {
-            definitions: [],
+            definitions: (this.$store.state.definition.definitions.userProfile || {}).data,
+            next: ((this.$store.state.definition.definitions.userProfile || {}).links || {}).next,
             isLoadingMore: false,
             hasMore: true
         }
     },
+    watch: {
+        '$route' (to, from) {
+            if(from.params.id !== to.params.id){ 
+                this.getDefinitions()
+            }    
+        }
+    },
+    serverPrefetch() {
+        return this.getDefinitions(true)
+    },
     mounted() {
         console.log('LCS ON MOUNT')
-        this.scroll();
+        if (window) {
+            this.scroll()
+        }
+        if (!this.definitions) {
+            this.getDefinitions(this.$route.query.q)
+        } else {
+            this.clearCollectionForUser()
+        }
     },
     methods: { 
         ...mapActions({
-            getDefinitionCollectionsForUser: 'definition/collectionForUser'
+            getDefinitionCollectionsForUser: 'definition/collectionForUser',
+            clearCollectionForUser: 'definition/clearCollectionForUser'
         }),
         scroll () {
             window.onscroll = () => {
@@ -71,15 +90,26 @@ export default {
                 }
             };
         },
-        async getDefinitions() {
+        async getDefinitions(prefetched) {
+            // console.log('LCS GET DEFINITIION ', this.$route.params.id, )
+            console.log('LCS IF TOTO', this.$route.params.id)
+            this.isLoadingMore = true
+            this.hasMore = true
+            this.definitions = []
+
+            // if (this.$route.params.id) {
             let response = await this.getDefinitionCollectionsForUser({
-                userId: this.$route.params.id
+                userId: this.$route.params.id,
+                prefetched
             })
+            // }
             this.definitions = response.data.data
             this.next = response.data.links.next
+            this.isLoadingMore = false
             if (!this.next) {
                 this.hasMore = false
             }
+            return
         },
     }
 }

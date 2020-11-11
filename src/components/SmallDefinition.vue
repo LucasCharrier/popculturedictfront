@@ -79,34 +79,3 @@
         }
     }
 </script>
-<style>
-    .title{
-        font-family: 'Copse', serif;
-    }
-    .subtitle.definition {
-        font-family: 'Quicksand', sans-serif;
-        white-space: pre-wrap;
-    }
-    .subtitle.exemple {
-        font-family: 'Quicksand', sans-serif;
-        white-space: pre-wrap;
-    }
-    .card {
-        border-radius: 10px;
-    }
-    .title a {
-        color: #363636;
-    }
-    .small-definition-image {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    /* font-family: 'Bree Serif', serif;
-    font-family: 'Copse', serif;
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Open Sans', sans-serif;
-    font-family: 'Quicksand', sans-serif; */
-</style>

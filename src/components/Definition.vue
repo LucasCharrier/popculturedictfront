@@ -77,7 +77,7 @@
 <script>
     import { mapActions, mapGetters } from 'vuex'
 
-    import ShareModal from '@/components/ShareModal'
+    import ShareModal from '@/components/ShareModal.vue'
 
     export default {
         props: ['definition'],
