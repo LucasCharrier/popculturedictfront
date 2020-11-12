@@ -44,7 +44,7 @@
                         <div class="gif-item-container" v-if="(gifs || []).length">
                             <div
                                 v-on:click="selectGif(gif)"
-                                :class="{'gif-item': true, 'gif-item-active': selectedGif.id === gif.id}"
+                                :class="{'gif-item': true, 'gif-item-active': (selectedGif ||{}).id === gif.id}"
                                 v-for="gif in gifs" :key="gif.id">
                                 <img :src="gif.images.fixed_height.url"/>
                             </div>
@@ -90,7 +90,7 @@
                     gif: undefined,
                     visibility: 'PUBLIC'
                 },
-                selectedGif: {},
+                selectedGif: undefined,
                 gifs: [],
                 searchedValue: ''
             }
