@@ -59,13 +59,27 @@
                     </a>
                 </p>
             </div>
-            <div :style="{ position: 'absolute', bottom: '20px', right: '20px'}">
-                <a class="button" href="" v-on:click.prevent="print('twitter')"><span class="icon">
-                <i class="fas fa-twitter"></i>
-                </span></a>
-                <a class="button" href="" v-on:click.prevent="print('instagram')"><span class="icon">
-                <i class="fas fa-instagram"></i>
-                </span></a>
+            <div :style="{ position: 'absolute', bottom: '40px', right: '20px'}">
+                <a class="is-small is-twitter social-link-tpd" v-on:click.prevent="print('twitter')">
+                    <span class="icon">
+                    <i class="fab fa-twitter fa-lg"></i>
+                    </span>
+                </a>
+                <a class="is-small is-instagram social-link-tpd" v-on:click.prevent="print('instagram')">
+                    <span class="icon">
+                    <i class="fab fa-instagram fa-lg"></i>
+                    </span>
+                </a>
+                <!-- <a class="button is-small is-twitter" >
+                    <span class="icon">
+                        <i class="fas fa-twitter fa-lg"></i>
+                    </span>
+                </a>
+                <a class="button is-small is-instagram" >
+                    <span class="icon">
+                        <i class="fas fa-instagram fa-lg"></i>
+                    </span>
+                </a> -->
             </div>
             <a class="button delete-button is-white"
                 @click.prevent="deleteAction"
@@ -202,6 +216,9 @@
         position: absolute;
         right: 20px;
         top: 20px;
+    }
+    .social-link-tpd {
+        color: #363636
     }
     /* font-family: 'Bree Serif', serif;
     font-family: 'Copse', serif;
