@@ -31,13 +31,22 @@
         },
         metaInfo() {
             return { 
-                title: "Epiloge - Build your network in your field of interest",
+                title: "The Pop Dictionnaire - Le dictionnaire de la pop culture",
                 meta: [
-                    { name: 'description', content:  'Epiloge is about connecting in your field of interest. Our vision is to help people share their knowledge, work, projects, papers and ideas and build their network through what they do rather where they live, study or work.'},
-                    { property: 'og:title', content: "Epiloge - Build your network in your field of interest"},
-                    { property: 'og:site_name', content: 'Epiloge'},
-                    {property: 'og:type', content: 'website'},    
-                    {name: 'robots', content: 'index,follow'} 
+                    { name: 'description', content:  'Le dictionnaire de la pop culture, le top 100 des meilleurs mots pop de la pop culture définis par la communauté.'},
+                    { property: 'og:title', content: "The Pop Dictionnaire - Le dictionnaire de la pop culture"},
+                    { property: 'og:description', content: "Le dictionnaire de la pop culture, le top 100 des meilleurs mots pop de la pop culture définis par la communauté."},
+                    { property: 'og:site_name', content: 'The Pop Dictionnaire'},
+                    { property: 'og:type', content: 'website' },    
+                    { name: 'robots', content: 'index,follow' },
+                    { property: 'twitter:title', content: "The Pop Dictionnaire - Le dictionnaire de la pop culture"},
+                    { property: 'twitter:description', content: "Le dictionnaire de la pop culture, le top 100 des meilleurs mots pop de la pop culture définis par la communauté."},
+                    { property: 'twitter:site', content: 'The Pop Dictionnaire'},
+                    { property: 'og:type', content: 'website' },    
+                    { name: 'robots', content: 'index,follow' },
+                ],
+                link: [
+                    { rel: 'canonical', href: 'http://www.thepopdictionnaire.com/' },
                 ]
             }
         },

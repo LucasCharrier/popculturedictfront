@@ -23,11 +23,18 @@
                 return { 
                     title: `${this.definitions[0].word.name} : ${this.definitions[0].text}`,
                     meta: [
-                        { name: 'description', content: `${this.definitions[0].text}`},
                         { property: 'og:title', content: `${this.definitions[0].text}`},
+                        { name: 'description', content: `${this.definitions[0].text}`},
                         { property: 'og:site_name', content: 'The Pop Dictionnaire'},
-                        {property: 'og:type', content: 'website'},    
-                        {name: 'robots', content: 'index,follow'} 
+                        { name: 'robots', content: 'index,follow' },
+                        { property: 'twitter:title', content: `${this.definitions[0].word.name}`},
+                        { property: 'twitter:description', content: `${this.definitions[0].text}`},
+                        { property: 'twitter:site', content: 'The Pop Dictionnaire'},
+                        { property: 'og:type', content: 'article' },    
+                        { name: 'robots', content: 'index,follow' },
+                    ],
+                    link: [
+                        { rel: 'canonical', href: this.$route.path },
                     ]
                 }
             }

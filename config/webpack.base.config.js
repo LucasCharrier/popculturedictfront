@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 const merge = require('webpack-merge');
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -53,7 +54,8 @@ let config = {
 if (isProduction) {
   config = merge(config, {
     optimization: {
-      minimizer: [new OptimizeCSSAssetsPlugin()],
+      minimize: true,
+      minimizer: [new OptimizeCSSAssetsPlugin(), new MinifyPlugin()],
     },
   });
 }
