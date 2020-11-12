@@ -37,7 +37,7 @@ export default {
         //'a-row': Row
     },
     metaInfo() {
-        if (this.$route.query.q) {
+        if (!this.$route.query.q) {
             return { 
                 title: `The Pop Dictionnaire : le dictionnaire de la pop culture`,
                 meta: [
