@@ -18,15 +18,17 @@
                     <p><a :href="data.media_url">via giphy</a></p>
                     <br>
                 </div>
-                <span v-for="tag in data.tags" :key="tag.id" :style="{marginRight: '10px'}">
-                    <router-link :to="{
-                        name: 'tag',
-                        params: {
-                            id: tag.id,
-                            text: tag.text
-                        }
-                    }">#{{ tag.text }}</router-link>
-                </span>
+                <p>
+                    <span v-for="tag in data.tags" :key="tag.id" :style="{marginRight: '10px'}">
+                        <router-link :to="{
+                            name: 'tag',
+                            params: {
+                                id: tag.id,
+                                text: tag.text
+                            }
+                        }">#{{ tag.text }}</router-link>
+                    </span>
+                </p>
                 <br>
                 par <router-link :to="{
                         name: 'profile',
@@ -58,12 +60,8 @@
                 </p>
             </div>
             <div :style="{ position: 'absolute', bottom: '20px', right: '20px'}">
-                <a class="button" href="" v-on:click.prevent="print('twitter')"><span class="icon">
-                <i class="fas fa-twitter"></i>
-                </span></a>
-                <a class="button" href="" v-on:click.prevent="print('instagram')"><span class="icon">
-                <i class="fas fa-instagram"></i>
-                </span></a>
+                <a class="button" href="" v-on:click.prevent="print('twitter')">Twitter</a>
+                <a class="button" href="" v-on:click.prevent="print('instagram')">Instagram</a>
             </div>
             <a class="button delete-button is-white"
                 @click.prevent="deleteAction"
