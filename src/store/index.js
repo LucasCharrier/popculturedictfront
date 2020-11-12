@@ -5,7 +5,6 @@ import tag from './tag'
 import user from './user'
 import modal from './modal'
 import definition from './definition'
-import { create } from 'core-js/fn/object'
 
 Vue.use(Vuex)
 
