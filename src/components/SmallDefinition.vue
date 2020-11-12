@@ -79,3 +79,10 @@
         }
     }
 </script>
+<style scoped>
+    .small-definition-image {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+</style>
