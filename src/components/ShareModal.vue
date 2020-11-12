@@ -1,7 +1,7 @@
 <template>
     <portal to="shareModal">
-        <div class="modal is-active" @click="handleCancel">
-            <div class="modal-background"></div>
+        <div class="modal is-active">
+            <div class="modal-background"  @click="handleCancel"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
                 <p class="modal-card-title">Partager sur les réseaux</p>
@@ -11,12 +11,20 @@
                 <!-- <div @click.stop class="modal-content"> -->
                     <!-- <div class="box"> -->
                     <p>Voici une image vous pouvez la copier ou l'enregistré avec un clique droit dessus</p>
-                    <SmallDefinition :definition="definition" :type="type"/>
+                    <SmallDefinition :definition="definition" :type="squareSize ? 'instagram' : 'twitter'" :removeExemple="removeExemple"/>
                     <p>1. clique droit sur l'image ci-dessus</p>
                     <p>2. puis clique sur copier limage</p>
                     <p>3. puis clique sur le boutton twitter et clique
                         droit et colle dans l'encart twitter l'image copier precédemment</p>
                     <br>
+                    <label class="checkbox">
+                        <input type="checkbox" v-model="removeExemple">
+                        Sans l'exemple
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" v-model="squareSize">
+                        Format carré
+                    </label>
                     <a
                         target="_blank"
                         :href="'https://twitter.com/intent/tweet?text='+ encodeURI(`https://www.thepopdictionnaire.com?q=${definition.word.name} : ${definition.word.name}`)"
@@ -43,10 +51,8 @@ export default {
     },
     data() {
         return {
-            form: {
-                email: '',
-                password: ''
-            }
+            squareSize: true,
+            removeExemple: false
         }
     },
     methods: { 
