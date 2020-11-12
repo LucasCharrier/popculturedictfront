@@ -11,7 +11,7 @@ import { API_BASE_URL } from './config'
 
 import storeSubscribe from './store/subscriber'
 
-axios.defaults.baseURL = 'https://api-therealdictionnary.herokuapp.com/api' //'http://localhost:8000/api' //API_BASE_URL 'https://api-therealdictionnary.herokuapp.com/api' //
+axios.defaults.baseURL = 'https://api-therealdictionnary.herokuapp.com/api'
 Vue.config.productionTip = false
 Vue.use(PortalVue)
 Vue.use(VueHtml2Canvas)
