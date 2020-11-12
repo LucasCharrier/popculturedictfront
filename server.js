@@ -50,9 +50,9 @@ const serve = (path, cache) => express.static(resolve(path), {
 })
 // in production should be better to serve static with nginx
 server.use(compression({ threshold: 0 }))
-server.use('/dist', server(express.static(path.join(__dirname, './dist'))))
-server.use('/public', server(express.static(path.join(__dirname, './public'))))
-server.use('/robots.txt', server(express.static(path.join(__dirname, './public/robots.txt'))))
+server.use('/dist', express.static(path.join(__dirname, './dist')))
+server.use('/public', express.static(path.join(__dirname, './public')))
+server.use('/robots.txt', express.static(path.join(__dirname, './public/robots.txt')))
 
 server.get('*', (req, res) => {
   const context = { url: req.url };
