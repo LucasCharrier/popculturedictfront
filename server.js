@@ -49,10 +49,10 @@ const serve = (path, cache) => express.static(resolve(path), {
   maxAge: 1000 * 60 * 60 * 24 * 30
 })
 // in production should be better to serve static with nginx
-server.use('/dist', express.static(path.join(__dirname, './dist')));
 server.use(compression({ threshold: 0 }))
-server.use('/dist', serve('./dist', true))
-server.use('/public', serve('./public', true))
+server.use('/dist', server(express.static(path.join(__dirname, './dist'))))
+server.use('/public', server(express.static(path.join(__dirname, './public'))))
+server.use('/robots.txt', server(express.static(path.join(__dirname, './public/robots.txt'))))
 
 server.get('*', (req, res) => {
   const context = { url: req.url };
