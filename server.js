@@ -1,11 +1,9 @@
 const path = require('path');
 const resolve = file => path.resolve(__dirname, file)
-const fs = require('fs');
 const express = require('express');
 const compression = require('compression')
-const setupDevServer = require('./config/setup-dev-server');
+
 const { createBundleRenderer } = require('vue-server-renderer');
-// const vueServerRenderer = require('vue-server-renderer');
 
 const template = require('fs').readFileSync(
   path.join(__dirname, './index.html'),
@@ -16,41 +14,14 @@ const serverBundle = require('./dist/vue-ssr-server-bundle.json');
 const clientManifest = require('./dist/vue-ssr-client-manifest.json');
 
 const server = express();
-let renderer
-const createRenderer = (bundle) =>
-  vueServerRenderer.createBundleRenderer(bundle, {
-      runInNewContext: false,
-      template: fs.readFileSync(
-          path.resolve(__dirname, 'index.html'),
-          'utf-8'
-      )
-  });
-if (process.env.NODE_ENV === 'development') {
-  setupDevServer(server,path.join(__dirname, 'index.html'), (bundle, options) => {
 
-      renderer = createBundleRenderer(bundle, Object.assign(options, {
-        // for component caching
-        // cache: LRU({
-        //     max: 1000,
-        //     maxAge: 1000 * 60 * 15
-        // }),
-        // this is only needed when vue-server-renderer is npm-linked
-        basedir: resolve('./dist'),
-        // recommended for performance
-        runInNewContext: false
-    }))
-
-      // renderer = createRenderer(serverBundle);
-  });
-} else {
-  renderer = createBundleRenderer(serverBundle, {
-    // this property means that the bundle code will run in the same global context with the server process
-    runInNewContext: false,
-    template,
-    clientManifest,
-    // inject: false,
-  });
-}
+const renderer = createBundleRenderer(serverBundle, {
+  // this property means that the bundle code will run in the same global context with the server process
+  runInNewContext: false,
+  template,
+  clientManifest,
+  // inject: false,
+});
 
 const serve = (path, cache) => express.static(resolve(path), {
   // maxAge: cache && isProd ? 1000 * 60 * 60 * 24 * 30 : 0
@@ -59,8 +30,8 @@ const serve = (path, cache) => express.static(resolve(path), {
 // in production should be better to serve static with nginx
 server.use('/dist', express.static(path.join(__dirname, './dist')));
 server.use(compression({ threshold: 0 }))
-server.use('/dist', express.static(path.join(__dirname, './dist')))
-server.use('/public', express.static(path.join(__dirname, './public')))
+server.use('/dist', serve('./dist', true))
+server.use('/public', serve('./public', true))
 
 server.get('*', (req, res) => {
   const context = { url: req.url };
@@ -80,5 +51,5 @@ server.get('*', (req, res) => {
 });
 
 server.listen(process.env.PORT || 3000, () => {
-  console.log('RUN server on : ' + process.env.PORT);
+  console.log('Our app is running on http://localhost:' + port);
 });
