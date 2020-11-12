@@ -1,5 +1,7 @@
 <template>
     <div :style="{marginLeft: 'auto', marginRight: 'auto', maxWidth: '600px'}">
+        <h1 class="main-title-prefix">Le dictionnaire de la</h1>
+        <h1 class="main-title-pop-culture">PopCulture</h1>
         <div class="field">
             <div class="control">
                 <input
@@ -186,3 +188,18 @@ export default {
     }
 }
 </script>
+<style scoped>
+    .main-title-pop-culture {
+        font-family: 'Pacifico', cursive;
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    .main-title-prefix {
+        font-size: 100%;
+        text-align: center;
+        font-family: 'Quicksand';
+        top: 10px;
+        position: relative;
+    }
+</style>
