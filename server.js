@@ -50,4 +50,6 @@ server.get('*', (req, res) => {
   });
 });
 
-server.listen(process.env.PORT || 3000);
+server.listen(process.env.PORT || 3000, () => {
+  console.log('RUN server on : ' + process.env.PORT);
+});
