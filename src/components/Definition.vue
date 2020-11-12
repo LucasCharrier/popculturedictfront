@@ -12,7 +12,8 @@
             </p>
             <div class="content">
                 <p class="subtitle definition">{{ data.text }}</p>
-                <p class="subtitle exemple" :style="{ fontStyle: 'italic' }">{{ data.exemple }}</p>
+                <p class="subtitle exemple" :style="{ fontStyle: 'italic', fontSize: '1.1rem', lineHeight: '1.5rem'
+                }">{{ data.exemple }}</p>
                 <div v-if="data.media_url">
                     <img :src="data.media_url"/>
                     <p><a :href="data.media_url">via giphy</a></p>
