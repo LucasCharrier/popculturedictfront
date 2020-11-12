@@ -190,6 +190,7 @@
     .subtitle.definition {
         font-family: 'Quicksand', sans-serif;
         white-space: pre-wrap;
+        font-weight: 500;
     }
     .subtitle.exemple {
         font-family: 'Quicksand', sans-serif;
