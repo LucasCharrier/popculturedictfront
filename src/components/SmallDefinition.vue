@@ -23,8 +23,8 @@
                         }" append>{{ definition.word.name }}</router-link>
                 </p>
                 <div class="content">
-                    <p class="subtitle definition">{{ definition.text }}</p>
-                    <p class="subtitle exemple" :style="{ fontStyle: 'italic' }">{{ definition.exemple }}</p>
+                    <p :class="{'subtitle definition': true, 'definition-twitter': type === 'twitter' }">{{ definition.text }}</p>
+                    <p :class="{'subtitle exemple': true, 'exemple-twitter': type === 'twitter' }" :style="{ fontStyle: 'italic' }">{{ definition.exemple }}</p>
                     <span v-for="tag in definition.tags" :key="tag.id" :style="{marginRight: '10px'}">
                         <router-link :to="{
                             name: 'tag',
@@ -89,5 +89,19 @@
         position: absolute;
         top: 0px;
         left: 0px;
+    }
+    .description-twitter {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5; /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
+    .exemple-twitter {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5; /* number of lines to show */
+        -webkit-box-orient: vertical;
     }
 </style>

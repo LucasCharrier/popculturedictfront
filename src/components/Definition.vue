@@ -190,11 +190,13 @@
     .subtitle.definition {
         font-family: 'Quicksand', sans-serif;
         white-space: pre-wrap;
-        font-weight: 500;
+        /* font-weight: 500; */
     }
     .subtitle.exemple {
         font-family: 'Quicksand', sans-serif;
         white-space: pre-wrap;
+        font-family: Helvetica, sans-serif;
+        font-weight: 300;
     }
     .card {
         border-radius: 10px;
