@@ -7,6 +7,7 @@ const setupDevServer = (app, onServerBundleReady) => {
     const serverConfig = require('./webpack.server.config');
   
     // additional client entry for hot reload
+	clientConfig.output.filename = "[name].js"
     clientConfig.entry.app = ['webpack-hot-middleware/client',
         clientConfig.entry.app];
   

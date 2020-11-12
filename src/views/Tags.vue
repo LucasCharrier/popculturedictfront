@@ -21,6 +21,12 @@ export default {
         // already being observed
         this.getTags()
     },
+    metaInfo: {
+        title: 'TagDefinition',
+        meta: {
+            
+        }
+    },
     data() {
         return {
             tags: []

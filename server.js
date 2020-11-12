@@ -1,57 +1,53 @@
-// server.js    
-const express = require('express');
 const path = require('path');
-const fs = require('fs');
-const vueServerRenderer = require('vue-server-renderer');
-const setupDevServer = require('./config/setup-dev-server');
- 
-const port = 3000;
-const app = express();
- 
-const createRenderer = (bundle) =>
-   vueServerRenderer.createBundleRenderer(bundle, {
-       runInNewContext: false,
-       template: fs.readFileSync(
-           path.resolve(__dirname, 'index.html'),
-           'utf-8'
-       )
-   });
-let renderer;
- 
-// you may want to serve static files with nginx or CDN
-app.use('/public',  express.static(path.resolve(__dirname, './dist')));
- 
-if (process.env.NODE_ENV === 'development') {
-    setupDevServer(app, (serverBundle) => {
-        renderer = createRenderer(serverBundle);
-    });
-} else {
-    renderer = createRenderer(
-        require('./dist/vue-ssr-server-bundle.json')
-    );
-}
- 
-app.get('*', async (req, res) => {
-   const context = {
-       url: req.url,
-       state: {
-           title: 'Vue SSR Simple Steps',
-           users: []
-       }
-   };
-   let html;
-   console.log('LCS SERVER',req.url)
-   try {
-       html = await renderer.renderToString(context);
-   } catch (error) {
-        console.log('LCS EEROR 404 OU', error);
-       if (error.code === 404) {
-           return res.status(404).send('404 | Page Not Found');
-       }
-       return res.status(500).send('500 | Internal Server Error');
-   }
- 
-   res.end(html);
+const resolve = file => path.resolve(__dirname, file)
+const express = require('express');
+const compression = require('compression')
+
+const { createBundleRenderer } = require('vue-server-renderer');
+
+const template = require('fs').readFileSync(
+  path.join(__dirname, './index.html'),
+  'utf-8',
+);
+
+const serverBundle = require('./dist/vue-ssr-server-bundle.json');
+const clientManifest = require('./dist/vue-ssr-client-manifest.json');
+
+const server = express();
+
+const renderer = createBundleRenderer(serverBundle, {
+  // this property means that the bundle code will run in the same global context with the server process
+  runInNewContext: false,
+  template,
+  clientManifest,
+  // inject: false,
 });
- 
-app.listen(port, () => console.log(`Listening on: ${port}`));
+
+const serve = (path, cache) => express.static(resolve(path), {
+  // maxAge: cache && isProd ? 1000 * 60 * 60 * 24 * 30 : 0
+  maxAge: 1000 * 60 * 60 * 24 * 30
+})
+// in production should be better to serve static with nginx
+server.use('/dist', express.static(path.join(__dirname, './dist')));
+server.use(compression({ threshold: 0 }))
+server.use('/dist', serve('./dist', true))
+server.use('/public', serve('./public', true))
+
+server.get('*', (req, res) => {
+  const context = { url: req.url };
+
+  renderer.renderToString(context, (err, html) => {
+    if (err) {
+      if (+err.message === 404) {
+        res.status(404).end('Page not found');
+      } else {
+        console.log(err);
+        res.status(500).end('Internal Server Error');
+      }
+    }
+
+    res.end(html);
+  });
+});
+
+server.listen(process.env.PORT || 3000);

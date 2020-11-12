@@ -5,7 +5,7 @@
                 <router-link class="navbar-item" :to="{
                     name: 'dashboard'
                 }">
-                HOMEPAGE
+                <img src="/public/logo.png" height="28">
                 <!-- <img src="@/assets/images/logo.png" height="28"> -->
                 </router-link>
                 <template>

@@ -7,15 +7,17 @@
     "build": "rimraf dist && npm run build:client && npm run build:server",
     "build:client": "cross-env NODE_ENV=production webpack --config ./config/webpack.client.config.js",
     "build:server": "cross-env NODE_ENV=production webpack --config ./config/webpack.server.config.js",
-    "dev": "cross-env NODE_ENV=development nodemon ./server.js"
+    "dev": "node server"
   },
   "dependencies": {
     "@giphy/js-fetch-api": "^1.7.0",
     "@okta/okta-vue": "^2.1.1",
     "axios": "^0.21.0",
     "babel-plugin-import": "^1.13.1",
+    "compression": "^1.7.4",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
+    "lru-cache": "^6.0.0",
     "portal-vue": "^2.1.7",
     "vue": "^2.6.11",
     "vue-html2canvas": "^0.0.4",
@@ -67,6 +69,7 @@
     "webpack-cli": "^4.2.0",
     "webpack-dev-middleware": "^3.7.0",
     "webpack-hot-middleware": "^2.25.0",
+    "webpack-manifest-plugin": "^2.2.0",
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^2.5.2"
   },

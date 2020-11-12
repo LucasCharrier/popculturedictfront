@@ -1,73 +1,71 @@
-// config/webpack.client.config.js
-const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const autoprefixer = require('autoprefixer');
- 
-const base = require('./webpack.base.config');
-const isProduction = process.env.NODE_ENV === 'production';
+const path = require('path');
 const srcPath = path.resolve(process.cwd(), 'src');
- 
-module.exports = merge(base, {
-   entry: {
-       app: path.join(srcPath, 'client-entry.js')
-   },
-   output: {
-       path: path.resolve(process.cwd(), 'dist'),
-       publicPath: '/public',
-       filename: isProduction ? '[name].[hash].js' : '[name].js',
-       sourceMapFilename: isProduction 
-           ? '[name].[hash].js.map' 
-           : '[name].js.map',
-   },
-   resolve: {
-       extensions: ['.js', '.vue'],
-   },  
-   module: {
-       rules: [         
-           {
-               test: /\.css$/,
-               use: [
-                   MiniCssExtractPlugin.loader,
-                   { 
-                       loader: 'css-loader',
-                       options: {
-                           sourceMap: !isProduction 
-                       }
-                   },
-               ]
-           },
-           {
-               test: /\.scss$/,
-               use: [
-                   MiniCssExtractPlugin.loader,
-                   'css-loader',
-                   {
-                       loader: 'postcss-loader',
-                       options: {
-                           plugins: () => [autoprefixer]
-                       }
-                   },
-                   'sass-loader',
-               ],
-           },           
-       ]
-   },
- 
-   plugins: [
-       new VueLoaderPlugin(),
-       ...(isProduction ? [
-           new MiniCssExtractPlugin({
-               filename: '[name].[contenthash].css',
-           }),
-       ] : [
-           new MiniCssExtractPlugin({
-               filename: '[name].css',
-               hmr: true
-           }),
-           new webpack.HotModuleReplacementPlugin(),
-       ])
-   ]
+
+const baseConfig = require('./webpack.base.config.js');
+
+const isProduction = process.env.NODE_ENV === 'production';
+
+let config = merge(baseConfig, {
+  entry: [path.join(srcPath, 'client-entry.js')],
+  plugins: [new VueSSRClientPlugin()],
+  output: {
+    path: path.resolve('./dist/'),
+    filename: '[name].[hash:8].js',
+    publicPath: '/dist/',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader',
+          {
+            loader: 'css-loader',
+            // options: {
+            //   modules: {
+            //     localIdentName: '[local]_[hash:base64:8]',
+            //   },
+            // },
+          },
+        ],
+      },
+    ],
+  },
 });
+
+if (!isProduction) {
+  config = merge(config, {
+    output: {
+      filename: '[name].js',
+      publicPath: 'http://localhost:9999/dist/',
+    },
+    plugins: [new webpack.HotModuleReplacementPlugin()],
+    devtool: 'source-map',
+    devServer: {
+      writeToDisk: true,
+      contentBase: path.resolve(__dirname, 'dist'),
+      publicPath: 'http://localhost:9999/dist/',
+      hot: true,
+      inline: true,
+      historyApiFallback: true,
+      port: 9999,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
+  });
+} else {
+  config = merge(config, {
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: '[name].[hash:8].css',
+      }),
+    ],
+  });
+}
+
+module.exports = config;

@@ -3,7 +3,7 @@ import axios from 'axios'
 import PortalVue from 'portal-vue'
 import VueHtml2Canvas from 'vue-html2canvas'
 import Toasted from 'vue-toasted'
-// import VueMeta from 'vue-meta'
+import VueMeta from 'vue-meta'
 
 import router from './router'
 import store from './store'
@@ -17,7 +17,7 @@ Vue.config.productionTip = false
 Vue.use(PortalVue)
 Vue.use(VueHtml2Canvas)
 Vue.use(Toasted)
-// Vue.use(VueMeta);
+Vue.use(VueMeta);
 
 // store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
 //   new Vue({

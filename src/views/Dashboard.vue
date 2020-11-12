@@ -34,6 +34,20 @@ export default {
         // 'a-col': Col,
         //'a-row': Row
     },
+    metaInfo() {
+        if (this.definitions && this.definitions.length) {
+            return { 
+                title: `${this.definitions[0].word.name} : ${this.definitions[0].text}`,
+                meta: [
+                    { name: 'description', content: `${this.definitions[0].text}`},
+                    { property: 'og:title', content: `${this.definitions[0].text}`},
+                    { property: 'og:site_name', content: 'The Pop Dictionnaire'},
+                    {property: 'og:type', content: 'website'},    
+                    {name: 'robots', content: 'index,follow'} 
+                ]
+            }
+        }
+    },
     serverPrefetch() {
         console.log('LCS TEST GET DEFINITION WITH QUERY', this.$route.query.q)
         return this.getDefinitions(true)
