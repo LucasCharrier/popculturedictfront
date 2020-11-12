@@ -60,8 +60,12 @@
                 </p>
             </div>
             <div :style="{ position: 'absolute', bottom: '20px', right: '20px'}">
-                <a class="button" href="" v-on:click.prevent="print('twitter')">Twitter</a>
-                <a class="button" href="" v-on:click.prevent="print('instagram')">Instagram</a>
+                <a class="button" href="" v-on:click.prevent="print('twitter')"><span class="icon">
+                <i class="fas fa-twitter"></i>
+                </span></a>
+                <a class="button" href="" v-on:click.prevent="print('instagram')"><span class="icon">
+                <i class="fas fa-instagram"></i>
+                </span></a>
             </div>
             <a class="button delete-button is-white"
                 @click.prevent="deleteAction"
