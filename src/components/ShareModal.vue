@@ -11,7 +11,7 @@
                 <!-- <div @click.stop class="modal-content"> -->
                     <!-- <div class="box"> -->
                     <p>Voici une image vous pouvez la copier ou l'enregistré avec un clique droit dessus</p>
-                    <SmallDefinition :definition="definition"/>
+                    <SmallDefinition :definition="definition" :type="type"/>
                     <p>1. clique droit sur l'image ci-dessus</p>
                     <p>2. puis clique sur copier limage</p>
                     <p>3. puis clique sur le boutton twitter et clique
@@ -38,7 +38,8 @@ export default {
     },
     props: {
         visible: Boolean,
-        definition: Object
+        definition: Object,
+        type: String
     },
     data() {
         return {

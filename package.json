@@ -7,7 +7,7 @@
     "build": "rimraf dist && npm run build:client && npm run build:server",
     "build:client": "cross-env NODE_ENV=production webpack --config ./config/webpack.client.config.js",
     "build:server": "cross-env NODE_ENV=production webpack --config ./config/webpack.server.config.js",
-    "dev": "node server"
+    "dev": "cross-env NODE_ENV=development node server"
   },
   "dependencies": {
     "@giphy/js-fetch-api": "^1.7.0",

@@ -2,16 +2,16 @@
 <template>
     <div :style="{
         position: 'relative',
-        width: '365px',
-        minHeight: '365px',
+        minHeight: type === 'twitter' ? 'auto' : '365px',
+        maxWidth: type === 'twitter' ? '530px' : '365px',
         marginRight: 'auto',
         padding: '5px',
 
         marginLeft: 'auto' }" ref="printMe">
         <div class="card" :style="{
             border: '1px solid #ccc',
-            minHeight: '365px',
-            maxWidth: '365px',
+            minHeight: type === 'twitter' ? 'auto' : '365px',
+            maxWidth: type === 'twitter' ? '530px' : '365px',
             position: 'relative'}">
             <div class="card-content">
                 <p class="title">
@@ -23,12 +23,8 @@
                         }" append>{{ definition.word.name }}</router-link>
                 </p>
                 <div class="content">
-                    <p class="subtitle definition">
-                        {{ definition.text }}
-                    </p>
-                    <p class="subtitle exemple" :style="{ fontStyle: 'italic' }">
-                        {{ definition.exemple }}
-                    </p>
+                    <p class="subtitle definition">{{ definition.text }}</p>
+                    <p class="subtitle exemple" :style="{ fontStyle: 'italic' }">{{ definition.exemple }}</p>
                     <span v-for="tag in definition.tags" :key="tag.id" :style="{marginRight: '10px'}">
                         <router-link :to="{
                             name: 'tag',
@@ -57,6 +53,15 @@
         props: ['definition'],
         mounted(){
             this.print()
+        },
+        props: {
+            type: {
+                type: String,
+                default: 'twitter'
+            },
+            definition: {
+                type: Object
+            }
         },
         data() {
             return {

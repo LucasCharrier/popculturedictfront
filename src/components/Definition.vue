@@ -57,10 +57,10 @@
                     </a>
                 </p>
             </div>
-            <a class="button"
-                :style="{ position: 'absolute', bottom: '20px', right: '20px'}"
-                href="" @click.prevent="print">Twitter</a>
-                
+            <div :style="{ position: 'absolute', bottom: '20px', right: '20px'}">
+                <a class="button" href="" v-on:click.prevent="print('twitter')">Twitter</a>
+                <a class="button" href="" v-on:click.prevent="print('instagram')">Instagram</a>
+            </div>
             <a class="button delete-button is-white"
                 @click.prevent="deleteAction"
                 v-if="(user || {}).id === data.user.id">
@@ -70,6 +70,7 @@
         <ShareModal v-if="modalVisible"
             :visible="modalVisible"
             @onHandleOk="onHandleOk"
+            :type="type"
             @onHandleCancel="onHandleCancel"
             :definition="data" />
     </div>
@@ -106,12 +107,13 @@
                 delete: 'definition/delete'
                 // user: 'auth/user'
             }),
-            async print() {
+            async print(type) {
                 // const el = this.$refs.printMe;
                 // add option type to get the image version
                 // if not provided the promise will return 
                 // the canvas.
                 this.modalVisible = true
+                this.type = type
                 // const options = {
                 //     type: 'dataURL'
                 // }

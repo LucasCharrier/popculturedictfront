@@ -60,4 +60,12 @@ if (isProduction) {
   });
 }
 
+if (!isProduction) {
+  config = merge(config, {
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+    ],
+  });
+}
+
 module.exports = config;
