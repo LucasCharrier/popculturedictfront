@@ -1,7 +1,7 @@
 <template>
     <portal to="signInModal">
-        <div v-show="visible || showModal" class="modal is-active" @click="handleCancel">
-            <div class="modal-background"></div>
+        <div v-show="visible || showModal" class="modal is-active">
+            <div class="modal-background"  @click="handleCancel"></div>
             <div @click.stop class="modal-content">
                 <div class="box">
                     <form @submit.prevent="submit">

@@ -1,7 +1,7 @@
 <template>
     <portal to="signUpOrInModal">
-        <div v-show="visible || this.showModal" class="modal is-active" @click="handleCancel">
-            <div class="modal-background"></div>
+        <div v-show="visible || this.showModal" class="modal is-active">
+            <div class="modal-background" @click="handleCancel"></div>
             <div @click.stop class="modal-content">
                 <div class="box">
                     <a v-if="state" @click.prevent="state=undefined"><i class="fas fa-arrow-left"></i> {{"retour"}}</a>
