@@ -51,5 +51,4 @@ server.get('*', (req, res) => {
 });
 
 server.listen(process.env.PORT || 3000, () => {
-  console.log('Our app is running on http://localhost:' + port);
 });
