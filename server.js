@@ -3,6 +3,7 @@ const resolve = file => path.resolve(__dirname, file)
 const express = require('express');
 const compression = require('compression')
 const { createBundleRenderer } = require('vue-server-renderer');
+const robots = require('express-robots-txt')
 // const vueServerRenderer = require('vue-server-renderer');
 
 const template = require('fs').readFileSync(
@@ -52,7 +53,8 @@ const serve = (path, cache) => express.static(resolve(path), {
 server.use(compression({ threshold: 0 }))
 server.use('/dist', express.static(path.join(__dirname, './dist')))
 server.use('/public', express.static(path.join(__dirname, './public')))
-server.use('/robots.txt', express.static(path.join(__dirname, './public/robots.txt')))
+server.use(robots({ UserAgent: '*', Sitemap: 'https://api-therealdictionnary.herokuapp.com/sitemap.xml' }))
+
 
 server.get('*', (req, res) => {
   const context = { url: req.url };

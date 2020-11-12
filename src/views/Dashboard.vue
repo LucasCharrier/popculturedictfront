@@ -37,7 +37,26 @@ export default {
         //'a-row': Row
     },
     metaInfo() {
-        if (this.definitions && this.definitions.length) {
+        if (this.$route.query.q) {
+            return { 
+                title: `The Pop Dictionnaire : le dictionnaire de la pop culture`,
+                meta: [
+                    { property: 'og:title', content: `The Pop Dictionnaire : le dictionnaire de la pop culture`},
+                    { name: 'description', content: `Le dictionnaire de la pop culture et des sub cultures. Dictionnaire urbain et participatifs. Créez vos définitions !`},
+                    { property: 'og:site_name', content: 'The Pop Dictionnaire'},
+                    { name: 'robots', content: 'index,follow' },
+                    { property: 'twitter:title', content: `The Pop Dictionnaire : le dictionnaire de la pop culture`},
+                    { property: 'twitter:description', content: `Le dictionnaire de la pop culture et des sub cultures. Dictionnaire urbain et participatifs. Créez vos définitions !`},
+                    { property: 'twitter:site', content: 'The Pop Dictionnaire'},
+                    { property: 'og:type', content: 'website' },    
+                    { name: 'robots', content: 'index,follow' },
+                ],
+                link: [
+                    { rel: 'canonical', href: this.$route.path },
+                ]
+            }
+        }
+        else if (this.definitions && this.definitions.length) {
             return { 
                 title: `${this.definitions[0].word.name} : ${this.definitions[0].text}`,
                 meta: [
