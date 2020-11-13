@@ -11,7 +11,7 @@
             </div>
         </div>
         <template>
-            <div v-for="definition in definitions" :key="definition.id">
+            <div v-for="definition in definitions" :key="`${definition.id}${definition.user_reaction}`">
                 <Definition :definition="definition"/>
             </div>
         </template>
@@ -94,6 +94,8 @@ export default {
         if (!this.definitions) {
             this.getDefinitions(this.$route.query.q)
         } else {
+            console.log('LCS REFETCH INITIAL DEF')
+            this.refetchInitialDefinitions()
             this.clearCollectionForDashboard()
         }
         // If we didn't already do it on the server
@@ -190,6 +192,11 @@ export default {
                     console.log('failed', e)
                 })
             }
+        },
+        async refetchInitialDefinitions() {
+            let response = await this.getDefinitionCollections({ q: this.$route.query.q })
+            this.definitions = response.data.data
+            this.next = response.data.links.next
         },
         async getDefinitions(prefetched) {
             this.isLoadingMore = true
