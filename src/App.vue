@@ -9,6 +9,7 @@
         <portal-target name="createDefModal"/>
         <portal-target name="shareModal"/>
         <portal-target name="signUpOrInModal" />
+        <consent-banner v-if="localStorage && !consentPackageConfig['cookie:modal-shown']"/>
         <div class="is-hidden-mobile is-hidden-tablet-only floating-utils-box">
             <ul>
                 <li>
@@ -23,11 +24,20 @@
 </template>
 
 <script>
+    import Vue from 'vue'
+    import { mapActions, mapGetters } from 'vuex'
+
     import TheNavigation from '@/components/TheNavigation.vue'
+    import ConsentBanner from '@/components/ConsentBanner.vue'
+
+    let state = {
+        note: 0
+    }
 
     export default {
         components: {
-            TheNavigation 
+            TheNavigation,
+            'consent-banner': ConsentBanner
         },
         metaInfo() {
             return { 
@@ -50,12 +60,21 @@
                 ]
             }
         },
+        computed: {
+            ...mapGetters({
+                consentPackageConfig: 'cookie/consentPackageConfig',
+            }),
+        },
         mounted() {
-            this.document = this.document
+            this.document = document
+            this.localStorage = localStorage
+            // crate component to content
+
         },
         data() {
             return { 
-                document: ''
+                document: '',
+                localStorage: undefined
             }
         }
     }
@@ -78,6 +97,10 @@
         color: #363636;
         box-shadow: 0 2px 0 black;
         border-color: black;
+    }
+    .swal-modal {
+        width: 800px;
+        max-width: 100vw;
     }
     /* font-family: 'Bree Serif', serif;
     font-family: 'Copse', serif;

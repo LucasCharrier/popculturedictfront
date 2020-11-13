@@ -8,7 +8,7 @@ import definition from './definition'
 
 Vue.use(Vuex)
 
-const createStore = (state) => {
+const createStore = (state, packages = {}) => {
     let create = (obj, key) => {
         let de = obj
         if (state && state[key]) {
@@ -33,7 +33,8 @@ const createStore = (state) => {
             definition: create(definition, 'definition'),
             modal,
             tag,
-            user
+            user,
+            ...packages
         }
     });
 };

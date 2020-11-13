@@ -1,10 +1,14 @@
 // client-entry.js    
 import { createApp } from './app'
 import Toasted from 'vue-toasted'
+import Swal from 'vue-swal'
 import Vue from 'vue'
-Vue.use(Toasted)
+import cookie from '@/store/cookie'
 
-const { app, router, store} = createApp({state: window.__INITIAL_STATE__});
+Vue.use(Toasted)
+Vue.use(Swal)
+
+const { app, router, store} = createApp({state: window.__INITIAL_STATE__}, { cookie });
 
 
 store.dispatch('auth/attempt', localStorage.getItem('token'))

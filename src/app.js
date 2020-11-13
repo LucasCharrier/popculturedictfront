@@ -18,8 +18,8 @@ Vue.use(VueHtml2Canvas)
 Vue.use(VueMeta);
 
 
-export const createApp = (context) =>  {
-  const store = createStore(context.state);
+export const createApp = (context, modules) =>  {
+  const store = createStore(context.state, modules);
   storeSubscribe(store)
   const app = new Vue({
       store,
