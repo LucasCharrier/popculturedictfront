@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <button class="modal-close is-large" aria-label="close"></button>
+            <button class="modal-close is-large" aria-label="close" @click="handleCancel"></button>
         </div>
     </portal>
 </template>
