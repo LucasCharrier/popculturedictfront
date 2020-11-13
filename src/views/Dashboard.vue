@@ -183,8 +183,7 @@ export default {
             };
         },
         onSearch(e) {
-            if (e.keyCode === 13 && this.searchedValue) {
-                                this.getDefinitions(this.searchedValue)
+            if (e.keyCode === 13) {
                 this.$router.push({
                     // name: 'dashboard',
                     query: { q: this.searchedValue }
@@ -202,7 +201,7 @@ export default {
             this.isLoadingMore = true
             this.hasMore = true
             this.definitions = []
-            let response = await this.getDefinitionCollections({ q: this.$route.query.q, prefetched })
+            let response = await this.getDefinitionCollections({ q: this.$route.query.q}, prefetched)
             this.definitions = response.data.data
             this.next = response.data.links.next
             this.isLoadingMore = false

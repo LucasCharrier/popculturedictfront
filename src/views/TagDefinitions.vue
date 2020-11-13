@@ -144,9 +144,8 @@ export default {
             this.hasMore = true
             this.definitions = []
             let response = await this.getDefinitionCollectionsByTag({
-                tagId: this.$route.params.id,
-                prefetched
-            })
+                tagId: this.$route.params.id
+            },prefetched)
             // return response
             this.definitions = response.data.data
             this.next = response.data.links.next

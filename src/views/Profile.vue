@@ -121,8 +121,7 @@ export default {
             // if (this.$route.params.id) {
             let response = await this.getDefinitionCollectionsForUser({
                 userId: this.$route.params.id,
-                prefetched
-            })
+            }, prefetched)
             // }
             this.definitions = response.data.data
             this.next = response.data.links.next
