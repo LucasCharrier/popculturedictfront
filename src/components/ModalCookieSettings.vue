@@ -58,7 +58,6 @@
     }
 </style>
 <script>
-    import GdprConsentFrame from '@/components/GdprConsentFrame'
     import { mapActions, mapGetters } from 'vuex'
 
     export default {
@@ -73,9 +72,6 @@
             ...mapGetters({
                 consentPackageConfig: 'auth/consentPackageConfig',
             }),
-        },
-        components: {
-            'gdpr-consent-frame': GdprConsentFrame 
         },
         props: {
             storageName: {
