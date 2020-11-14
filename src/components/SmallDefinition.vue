@@ -26,7 +26,7 @@
                     <div class="content">
                         <p :class="{'subtitle definition': true, 'definition-twitter': type === 'twitter' }">{{ definition.text }}</p>
                         <p v-if="!removeExemple" :class="{'subtitle exemple': true, 'exemple-twitter': type === 'twitter' }" :style="{ fontStyle: 'italic' }">{{ definition.exemple }}</p>
-                        <span v-for="tag in definition.tags" :key="tag.id" :style="{marginRight: '10px'}">
+                        <!-- <span v-for="tag in definition.tags" :key="tag.id" :style="{marginRight: '10px'}">
                             <router-link :to="{
                                 name: 'tag',
                                 params: {
@@ -34,7 +34,7 @@
                                     text: tag.text
                                 }
                             }">#{{ tag.text }}</router-link>
-                        </span>
+                        </span> -->
                         <a :style="{ position: 'absolute', bottom: '5px', right: '10px', color: '#363636'}">www.thepopdictionnaire.com</a>
                         <!-- <br>
                         par <router-link :to="{
