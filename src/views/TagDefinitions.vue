@@ -60,7 +60,6 @@ export default {
         }
     },
     data() {
-        console.log('LCS TAG DEF DATA', this.$store.state.definition.definitions.tags)
         return {
             form: {
                 name: '',
@@ -76,11 +75,9 @@ export default {
         if (window) {
             this.scroll();
         }
-        console.log('LCS MOUNTED', this.definitions)
         if (!this.definitions) {
             this.getDefinitions()
         } else {
-            console.log("LCS CLEAR COLLECITON BY TAG")
             this.clearCollectionsByTag()
         }
     },
@@ -131,8 +128,7 @@ export default {
                             if (!this.next) {
                                 this.hasMore = false
                             }
-                            console.log(this.next)
-                        }, 2000)
+                        }, 1000)
                     }).catch(() => {
                         this.isLoadingMore = false
                     })
@@ -144,8 +140,9 @@ export default {
             this.hasMore = true
             this.definitions = []
             let response = await this.getDefinitionCollectionsByTag({
-                tagId: this.$route.params.id
-            },prefetched)
+                tagId: this.$route.params.id,
+                prefetched
+            })
             // return response
             this.definitions = response.data.data
             this.next = response.data.links.next

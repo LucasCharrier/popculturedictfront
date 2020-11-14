@@ -67,7 +67,6 @@ export default {
         return this.getDefinitions(true)
     },
     mounted() {
-        console.log('LCS ON MOUNT')
         if (window) {
             this.scroll()
         }
@@ -103,8 +102,7 @@ export default {
                             if (!this.next) {
                                 this.hasMore = false
                             }
-                            console.log(this.next)
-                        }, 2000)
+                        }, 1000)
                     }).catch(() => {
                         this.isLoadingMore = false
                     })
@@ -113,7 +111,6 @@ export default {
         },
         async getDefinitions(prefetched) {
             // console.log('LCS GET DEFINITIION ', this.$route.params.id, )
-            console.log('LCS IF TOTO', this.$route.params.id)
             this.isLoadingMore = true
             this.hasMore = true
             this.definitions = []
@@ -121,7 +118,8 @@ export default {
             // if (this.$route.params.id) {
             let response = await this.getDefinitionCollectionsForUser({
                 userId: this.$route.params.id,
-            }, prefetched)
+                prefetched
+            })
             // }
             this.definitions = response.data.data
             this.next = response.data.links.next

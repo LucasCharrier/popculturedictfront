@@ -60,25 +60,25 @@ export default {
             let response = await axios.post(`definitions/${credentials.id}`)
             return response
         },
-        async getcollection ({ commit }, credentials, prefetched) {
-            console.log('LCS GET COLLECTION', credentials)
-            let response = await axios.get('definitions', { params: credentials})
-            if (prefetched) {
+        async getcollection ({ commit }, credentials) {
+            let response = await axios.get('definitions', { params: {
+                q: credentials.q 
+            }})
+            if (credentials.prefetched) {
                 commit('SET_DASHBOARD_DEFINITIONS', { data: response.data })
             }
             return response
         },
-        async getCollectionByTag ({ commit }, credentials, prefetched) {
+        async getCollectionByTag ({ commit }, credentials ) {
             let response = await axios.get(`tags/${credentials.tagId}/definitions`)
-            if (prefetched) {
+            if (credentials.prefetched) {
                 commit('SET_TAG_DEFINITIONS', { data: response.data })
             }
             return response
         },
-        async collectionForUser ({ commit }, credentials, prefetched) {
-            console.log('LCS COLLECTIO USER ID', credentials.userId)
+        async collectionForUser ({ commit }, credentials ) {
             let response = await axios.get(`users/${credentials.userId}/definitions`)
-            if (prefetched) {
+            if (credentials.prefetched) {
                 commit('SET_USER_PROFILE_DEFINITIONS', { data: response.data })
             }
             return response

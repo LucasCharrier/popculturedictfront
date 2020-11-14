@@ -77,7 +77,6 @@ export default {
         }
     },
     serverPrefetch() {
-        console.log('LCS TEST GET DEFINITION WITH QUERY', this.$route.query.q)
         return this.getDefinitions(true)
     },
     created () {
@@ -94,7 +93,6 @@ export default {
         if (!this.definitions) {
             this.getDefinitions(this.$route.query.q)
         } else {
-            console.log('LCS REFETCH INITIAL DEF')
             this.refetchInitialDefinitions()
             this.clearCollectionForDashboard()
         }
@@ -141,7 +139,7 @@ export default {
     watch: {
         '$route' (to, from) {
             if(from.query.q !== to.query.q){ 
-                this.getDefinitions(to.query.q)
+                this.getDefinitions()
             }    
         }
     },
@@ -175,7 +173,7 @@ export default {
                                 this.hasMore = false
                             }
                             // console.log(this.next)
-                        }, 2000)
+                        }, 1000)
                     }).catch(() => {
                         this.isLoadingMore = false
                     })
@@ -201,7 +199,7 @@ export default {
             this.isLoadingMore = true
             this.hasMore = true
             this.definitions = []
-            let response = await this.getDefinitionCollections({ q: this.$route.query.q}, prefetched)
+            let response = await this.getDefinitionCollections({ q: this.$route.query.q, prefetched })
             this.definitions = response.data.data
             this.next = response.data.links.next
             this.isLoadingMore = false
