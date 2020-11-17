@@ -5,7 +5,7 @@
         <div class="box">
             <h2 class="subtitle">Top des mots commençant par {{ this.$route.query.character }}</h2>
 
-            <div class="columns">
+            <div class="columns is-mobile">
                 <div class="column">
                     <ul>
                         <li v-for="definition in definitions" :key="definition.id">
