@@ -59,7 +59,7 @@
                 </div>
             </div>
         </nav>
-        <CreateDefModal
+        <CreateDefModal v-if="visible"
             :visible="visible"
             @onHandleOk="handleOk"
             @onHandleCancel="handleCancel"/>
