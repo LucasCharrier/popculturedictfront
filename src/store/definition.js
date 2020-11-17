@@ -62,7 +62,8 @@ export default {
         },
         async getcollection ({ commit }, credentials) {
             let response = await axios.get('definitions', { params: {
-                q: credentials.q 
+                q: credentials.q,
+                character: credentials.character
             }})
             if (credentials.prefetched) {
                 commit('SET_DASHBOARD_DEFINITIONS', { data: response.data })

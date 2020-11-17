@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Dashboard from '../views/Dashboard.vue'
-import Profile from '../views/Profile.vue'
-import DefinitionDetail from '../views/DefinitionDetail.vue'
-import TagDefinitions from '../views/TagDefinitions.vue'
-import Tags from '../views/Tags.vue'
+import Dashboard from '@/views/Dashboard.vue'
+import Profile from '@/views/Profile.vue'
+import DefinitionDetail from '@/views/DefinitionDetail.vue'
+import AlphabeticalDefinitions from '@/views/AlphabeticalDefinitions.vue'
+import TagDefinitions from '@/views/TagDefinitions.vue'
+import Tags from '@/views/Tags.vue'
 import PrivacyPolicy from '../views/PrivacyPolicy.vue'
-import CGU from '../views/CGU.vue'
+import CGU from '@/views/CGU.vue'
 // import store from '../store'
 
 Vue.config.productionTip = false
@@ -47,6 +48,11 @@ const routes = [
         path: '/privacy_policy',
         name: 'privacy_policy',
         component: PrivacyPolicy
+    },
+    {
+        path: '/populaire',
+        name: 'popular',
+        component: AlphabeticalDefinitions
     },
     {
         path: '/',

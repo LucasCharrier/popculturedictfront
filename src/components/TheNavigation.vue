@@ -13,24 +13,40 @@
                         <i class="fa fa-plus-circle"/> Ajouter une définition
                     </a>
                 </template>
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-burger-trigger">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-            <div id="navbarBasicExample" class="navbar-menu">
+            <div id="navbar-burger-trigger" class="navbar-menu">
                 <div class="navbar-start">
                     <a class="navbar-item is-hidden-mobile is-hidden-tablet-only" key="addDef" @click.prevent="showModal">Ajouter une définition</a>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                        Chercher
+                        </a>
+                        <div class="navbar-dropdown">
+                            <div class="columns columns-alphabetical" v-for="(letterSubList, index) in letterList" :key="index">
+                                <div class="column" v-for="letter in letterSubList" :key="letter">
+                                    <router-link class="button button-alphabetical" :to="{
+                                        name: 'popular',
+                                        query: {
+                                            character: letter
+                                        }
+                                    }">{{ letter }}</router-link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <router-link :to="{
                     name: 'cgu'}" class="navbar-item is-hidden-desktop-only is-hidden-widescreen-only">CGU</router-link>
                     <router-link :to="{
                     name: 'privacy_policy'}" class="navbar-item is-hidden-desktop-only is-hidden-widescreen-only">Politique de confidentialité</router-link>
-                
                 </div>
                 <div class="navbar-end">
                     <div class="navbar-item" v-if="authenticated">
-                        <router-link class="navbar-item"  :to="{
+                        <router-link class="navbar-item" :to="{
                             name: 'profile',
                             params: {
                                 id: user.id
@@ -97,7 +113,14 @@
                 visibleSignUpModal: false,
                 visibleSignInModal: false,
                 visibleSignUpOrInModal: false,
-                document: ''
+                document: '',
+                letterList: [
+                    ['A','B', 'C', 'D', 'F'],
+                    ['G','H', 'I', 'J', 'K'],
+                    ['L', 'M', 'N', 'O', 'P'],
+                    ['Q', 'R', 'S', 'T', 'U'],
+                    ['V', 'W', 'X', 'Y', 'Z'],
+                ]
             }
         },
         mounted() {
@@ -199,5 +222,25 @@
     }
     .navbar-burger {
        color: #363636;
+    }
+    .columns-alphabetical {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .button-alphabetical {
+        border-radius: 20px;
+        width: 40px;
+        height: 40px;
+        font-weight: bold;
+        color: mediumaquamarine;
+        border: 2px solid mediumaquamarine;
+        text-align: center;
+        padding: 0;
+        line-height: 20px;
+    }
+    .button-alphabetical:hover {
+        background-color: mediumaquamarine;
+        border: 2px solid mediumaquamarine;
+        color: white;
     }
 </style>
