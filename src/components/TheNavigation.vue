@@ -27,7 +27,7 @@
                         Chercher
                         </a>
                         <div class="navbar-dropdown">
-                            <div class="columns columns-alphabetical" v-for="(letterSubList, index) in letterList" :key="index">
+                            <div class="columns columns-alphabetical is-mobile" v-for="(letterSubList, index) in letterList" :key="index">
                                 <div class="column" v-for="letter in letterSubList" :key="letter">
                                     <router-link class="button button-alphabetical" :to="{
                                         name: 'popular',
