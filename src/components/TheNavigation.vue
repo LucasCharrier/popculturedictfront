@@ -23,10 +23,10 @@
                 <div class="navbar-start">
                     <a class="navbar-item is-hidden-mobile is-hidden-tablet-only" key="addDef" @click.prevent="showModal">Ajouter une définition</a>
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">
+                        <a class="navbar-link" @click="toggleShowLetters">
                         Chercher
                         </a>
-                        <div class="navbar-dropdown">
+                        <div class="navbar-dropdown" v-if="showLetters">
                             <div class="columns columns-alphabetical is-mobile" v-for="(letterSubList, index) in letterList" :key="index">
                                 <div class="column" v-for="letter in letterSubList" :key="letter">
                                     <router-link class="button button-alphabetical" :to="{
@@ -95,7 +95,8 @@
 </template>
 <script>
     import { mapGetters, mapActions } from 'vuex'
-    import CreateDefModal from '../components/CreateDefModal.vue'
+
+    import CreateDefModal from '@/components/CreateDefModal.vue'
     import SignUpModal from '@/components/SignUpModal.vue'
     import SignInModal from '@/components/SignInModal.vue'
     import SignUpOrInModal from '@/components/SignUpOrInModal.vue'
@@ -114,6 +115,7 @@
                 visibleSignInModal: false,
                 visibleSignUpOrInModal: false,
                 document: '',
+                showLetters: false,
                 letterList: [
                     ['A','B', 'C', 'D', 'F'],
                     ['G','H', 'I', 'J', 'K'],
@@ -125,6 +127,9 @@
         },
         mounted() {
             this.document = document
+            const { isMobile } = require('@/helpers/mobile')
+            this.isMobile = isMobile
+            this.showLetters = !isMobile()
             this.setBugerMenu()
         },
         components: {
@@ -150,6 +155,11 @@
             },
             showSignInModal() {
                 this.visibleSignInModal = true;
+            },
+            toggleShowLetters() {
+                if (this.isMobile()) {
+                    this.showLetters = !this.showLetters
+                }
             },
             handleOk() {
                 this.visible = false;
