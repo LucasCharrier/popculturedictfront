@@ -39,27 +39,27 @@
             TheNavigation,
             'consent-banner': ConsentBanner
         },
-        // metaInfo() {
-        //     return { 
-        //         title: "The Pop Dictionnaire - Le dictionnaire de la pop culture",
-        //         meta: [
-        //             { name: 'description', content:  'Le dictionnaire de la pop culture, le top 100 des meilleurs mots pop de la pop culture définis par la communauté.'},
-        //             { property: 'og:title', content: "The Pop Dictionnaire - Le dictionnaire de la pop culture"},
-        //             { property: 'og:description', content: "Le dictionnaire de la pop culture, le top 100 des meilleurs mots pop de la pop culture définis par la communauté."},
-        //             { property: 'og:site_name', content: 'The Pop Dictionnaire'},
-        //             { property: 'og:type', content: 'website' },    
-        //             { name: 'robots', content: 'index,follow' },
-        //             { property: 'twitter:title', content: "The Pop Dictionnaire - Le dictionnaire de la pop culture"},
-        //             { property: 'twitter:description', content: "Le dictionnaire de la pop culture, le top 100 des meilleurs mots pop de la pop culture définis par la communauté."},
-        //             { property: 'twitter:site', content: 'The Pop Dictionnaire'},
-        //             { property: 'og:type', content: 'website' },    
-        //             { name: 'robots', content: 'index,follow' },
-        //         ],
-        //         link: [
-        //             { rel: 'canonical', href: 'https://www.thepopdictionnaire.com/' },
-        //         ]
-        //     }
-        // },
+        metaInfo() {
+            return { 
+                title: "The Pop Dictionnaire - Le dictionnaire de la pop culture",
+                meta: [
+                    { name: 'description', content:  'Le dictionnaire de la pop culture, le top 100 des meilleurs mots pop de la pop culture définis par la communauté.'},
+                    { property: 'og:title', content: "The Pop Dictionnaire - Le dictionnaire de la pop culture"},
+                    { property: 'og:description', content: "Le dictionnaire de la pop culture, le top 100 des meilleurs mots pop de la pop culture définis par la communauté."},
+                    { property: 'og:site_name', content: 'The Pop Dictionnaire'},
+                    { property: 'og:type', content: 'website' },    
+                    { name: 'robots', content: 'index,follow' },
+                    { property: 'twitter:title', content: "The Pop Dictionnaire - Le dictionnaire de la pop culture"},
+                    { property: 'twitter:description', content: "Le dictionnaire de la pop culture, le top 100 des meilleurs mots pop de la pop culture définis par la communauté."},
+                    { property: 'twitter:site', content: 'The Pop Dictionnaire'},
+                    { property: 'og:type', content: 'website' },    
+                    { name: 'robots', content: 'index,follow' },
+                ],
+                link: [
+                    { rel: 'canonical', href: 'https://www.thepopdictionnaire.com/' },
+                ]
+            }
+        },
         computed: {
             ...mapGetters({
                 consentPackageConfig: 'cookie/consentPackageConfig',
