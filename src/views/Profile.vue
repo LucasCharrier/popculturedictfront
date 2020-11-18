@@ -38,7 +38,7 @@ export default {
                     { name: 'robots', content: 'index,follow' },
                 ],
                 link: [
-                    { rel: 'canonical', href: this.$route.path },
+                    { rel: 'canonical', href: `https://www.thepopdictionnaire.com${this.$route.fullPath}` },
                 ]
             }
         }

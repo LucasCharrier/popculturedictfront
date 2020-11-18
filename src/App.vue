@@ -56,7 +56,7 @@
                     { name: 'robots', content: 'index,follow' },
                 ],
                 link: [
-                    { rel: 'canonical', href: 'http://www.thepopdictionnaire.com/' },
+                    { rel: 'canonical', href: 'https://www.thepopdictionnaire.com/' },
                 ]
             }
         },
