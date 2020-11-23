@@ -11,8 +11,8 @@
                         <li v-for="definition in definitions" :key="definition.id">
                             <router-link :to="{
                                 name: 'dashboard',
-                                query: {
-                                    q: definition.word.name
+                                params: {
+                                    query: definition.word.name.toLowerCase().split(' ').join('-')
                                 }
                             }">{{ definition.word.name }}</router-link>
                         </li>

@@ -140,7 +140,10 @@ export default {
         '$route' (to, from) {
             if(from.query.q !== to.query.q){ 
                 this.getDefinitions()
-            }    
+            }
+            if(from.params.query !== to.params.query){ 
+                this.getDefinitions()
+            }
         }
     },
     methods: { 
@@ -191,7 +194,8 @@ export default {
             }
         },
         async refetchInitialDefinitions() {
-            let response = await this.getDefinitionCollections({ q: this.$route.query.q })
+            console.log('LCS DASHBIARD ')
+            let response = await this.getDefinitionCollections({ q: this.$route.params.query || this.$route.query.q })
             this.definitions = response.data.data
             this.next = response.data.links.next
         },
@@ -199,7 +203,7 @@ export default {
             this.isLoadingMore = true
             this.hasMore = true
             this.definitions = []
-            let response = await this.getDefinitionCollections({ q: this.$route.query.q, prefetched })
+            let response = await this.getDefinitionCollections({ q: this.$route.params.query || this.$route.query.q, prefetched })
             this.definitions = response.data.data
             this.next = response.data.links.next
             this.isLoadingMore = false

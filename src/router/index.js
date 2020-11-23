@@ -55,7 +55,7 @@ const routes = [
         component: AlphabeticalDefinitions
     },
     {
-        path: '/',
+        path: '/:query?',
         name: 'dashboard',
         component: Dashboard,
         // beforeEnter: (to, from, next) => {

@@ -5,8 +5,8 @@
             <p class="title">
                 <router-link :to="{
                         name: 'dashboard',
-                        query: {
-                            q: data.word.name
+                        params: {
+                            query: data.word.name.toLowerCase().split(' ').join('-')
                         }
                     }" append>{{ data.word.name }}</router-link>
             </p>
