@@ -9,8 +9,7 @@
                 Identification de la société
             </div>
             <div class="block">
-                La société THE POP DICTIONNAIRE, éditeur du site https://www.thepopdictionnaire.com, immatriculée au RCS de Paris sous le n° 834 125 361 et dont le siège social est situé 42 rue de Maubeuge 75009 Paris (ci-après la « Société » ou « THE POP DICTIONNAIRE »).
-            </div>
+               THE POP DICTIONNAIRE, éditeur du site https://www.thepopdictionnaire.com</div>
             <div class="block">
                 Contact email : fluidebrulant@gmail.com
             </div>
