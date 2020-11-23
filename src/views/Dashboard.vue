@@ -187,7 +187,10 @@ export default {
             if (e.keyCode === 13) {
                 this.$router.push({
                     // name: 'dashboard',
-                    query: { q: this.searchedValue }
+                    params: {
+                        query: this.searchedValue.toLowerCase().split(' ').join('-')
+                    }
+                    // query: { q: this.searchedValue }
                 }).catch((e) => {
                     console.log('failed', e)
                 })
